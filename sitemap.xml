@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <sitemap>
-    <loc>https://freeMdoge.github.io/zh-cn/sitemap.xml</loc>
-    
-      <lastmod>2025-07-23T13:08:23+08:00</lastmod>
-    
-  </sitemap>
-  
-  <sitemap>
-    <loc>https://freeMdoge.github.io/en/sitemap.xml</loc>
-    
-      <lastmod>2020-10-09T00:00:00+00:00</lastmod>
-    
-  </sitemap>
-  
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://freeMdoge.github.io/post/</loc>
+    <lastmod>2025-07-23T20:13:51+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/p/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2/</loc>
+    <lastmod>2025-07-23T20:13:51+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/page/</loc>
+    <lastmod>2025-07-23T12:12:49+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/archives/</loc>
+    <lastmod>2025-07-23T12:12:49+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/</loc>
+    <lastmod>2025-07-23T12:12:49+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/categories/</loc>
+    <lastmod>2025-07-23T12:12:49+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/tags/</loc>
+  </url><url>
+    <loc>https://freeMdoge.github.io/categories/test/</loc>
+    <lastmod>2025-07-23T12:12:49+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/%E5%85%B3%E4%BA%8E/</loc>
+    <lastmod>2025-07-23T12:12:49+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/search/</loc>
+    <lastmod>2025-07-23T12:12:49+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</loc>
+    <lastmod>2025-07-23T12:12:49+08:00</lastmod>
+  </url>
+</urlset>
