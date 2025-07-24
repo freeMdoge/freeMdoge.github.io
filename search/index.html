@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://freeMdoge.github.io/search/'>
 
-<link rel="stylesheet" href="/scss/style.min.1556542f633a0ce3cba635cadc657b930686bb03a5394d0b10e81a4bb47f15b8.css"><meta property='og:title' content="搜索">
+<link rel="stylesheet" href="/scss/style.min.a627312c98f3f14949f8637e62a7610281fa5503f211f20931ebfccb25745e81.css"><meta property='og:title' content="搜索">
 <meta property='og:description' content="">
 <meta property='og:url' content='https://freeMdoge.github.io/search/'>
 <meta property='og:site_name' content='freeMdoge'>
@@ -279,6 +279,9 @@
         document.head.appendChild(customFont);
     }());
 </script>
+
+<div id="particles-js"></div>
+
 <style>
      
     #TableOfContents > ul, ol {
@@ -289,8 +292,20 @@
             display: block;
         }
     }
+    
+     
+    #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    }
 
 </style>
+
+
+<script src=https://freeMdoge.github.io/background/particles.min.js></script>
 
 <script>
     
@@ -328,6 +343,12 @@
         });
     }
     initTocHide()
+    
+    
+
+    particlesJS.load('particles-js', "https://freeMdoge.github.io/background/particlesjs-config.json", function() {
+        console.log('particles.js loaded - callback');
+    });
 </script>
     </body>
 </html>
