@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="CS 61A Test the code in HW/Lab use ok:\n1 py ok --local -q &lt;question_name&gt; use ok interactively:\n1 py ok --local -q &lt;question_name&gt; -i use Python&rsquo;s doctest:\n1 py -m doctest &lt;file_name.py&gt; Lecture 01 Welcome Python code consists of expressions and statements\nStatements typically describe actions.\nassignment statement expressions typically describe computations.\na number numbers combined with mathematical operators a compound expression the interperter will evaluate（求值） using infix notation call expression applying a function to some arguments Operator(Operand, Operand) Function notation has three principal advantages over the mathematical convention of infix notation: arbitrary number of arguments a straightforward way to nested expressions simple forms (without square root, superscripts, &hellip;) Python 代码由 expressions 和 statements 两部分组成。statements 用于描述 actions ，比如赋值；expressions 用于描述 computations ，比如数字，计算表达式，函数调用表达式。\n">
+<title>CS 61A 笔记</title>
+
+<link rel='canonical' href='https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/'>
+
+<link rel="stylesheet" href="/scss/style.min.a627312c98f3f14949f8637e62a7610281fa5503f211f20931ebfccb25745e81.css"><meta property='og:title' content="CS 61A 笔记">
+<meta property='og:description' content="CS 61A Test the code in HW/Lab use ok:\n1 py ok --local -q &lt;question_name&gt; use ok interactively:\n1 py ok --local -q &lt;question_name&gt; -i use Python&rsquo;s doctest:\n1 py -m doctest &lt;file_name.py&gt; Lecture 01 Welcome Python code consists of expressions and statements\nStatements typically describe actions.\nassignment statement expressions typically describe computations.\na number numbers combined with mathematical operators a compound expression the interperter will evaluate（求值） using infix notation call expression applying a function to some arguments Operator(Operand, Operand) Function notation has three principal advantages over the mathematical convention of infix notation: arbitrary number of arguments a straightforward way to nested expressions simple forms (without square root, superscripts, &hellip;) Python 代码由 expressions 和 statements 两部分组成。statements 用于描述 actions ，比如赋值；expressions 用于描述 computations ，比如数字，计算表达式，函数调用表达式。\n">
+<meta property='og:url' content='https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/'>
+<meta property='og:site_name' content='freeMdoge'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-07-24T11:34:11&#43;08:00'/><meta property='article:modified_time' content='2025-07-24T11:43:00&#43;08:00'/><meta property='og:image' content='https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian.png' />
+<meta name="twitter:title" content="CS 61A 笔记">
+<meta name="twitter:description" content="CS 61A Test the code in HW/Lab use ok:\n1 py ok --local -q &lt;question_name&gt; use ok interactively:\n1 py ok --local -q &lt;question_name&gt; -i use Python&rsquo;s doctest:\n1 py -m doctest &lt;file_name.py&gt; Lecture 01 Welcome Python code consists of expressions and statements\nStatements typically describe actions.\nassignment statement expressions typically describe computations.\na number numbers combined with mathematical operators a compound expression the interperter will evaluate（求值） using infix notation call expression applying a function to some arguments Operator(Operand, Operand) Function notation has three principal advantages over the mathematical convention of infix notation: arbitrary number of arguments a straightforward way to nested expressions simple forms (without square root, superscripts, &hellip;) Python 代码由 expressions 和 statements 两部分组成。statements 用于描述 actions ，比如赋值；expressions 用于描述 computations ，比如数字，计算表达式，函数调用表达式。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian.png' />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_5f80f535f5d9f735.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">😋</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">freeMdoge</a></h1>
+            <h2 class="site-description">你好 awa</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/383110187'
+                        target="_blank"
+                        title="BiliBili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>友情链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#test-the-code-in-hwlab">Test the code in HW/Lab</a></li>
+    <li><a href="#lecture-01---welcome">Lecture 01   Welcome</a></li>
+    <li><a href="#lecture-02---functions">Lecture 02   Functions</a></li>
+    <li><a href="#lecture-03---control">Lecture 03   Control</a></li>
+    <li><a href="#lecture-04---high-order-functions">Lecture 04   High-Order Functions</a></li>
+    <li><a href="#lecture-05---environments">Lecture 05   Environments</a></li>
+    <li><a href="#lecture-06---sounds-optional">Lecture 06   Sounds (Optional)</a></li>
+    <li><a href="#lecture-07---functional-abstraction">Lecture 07   Functional Abstraction</a></li>
+    <li><a href="#lecture-08---function-examples">Lecture 08   Function Examples</a></li>
+    <li><a href="#lecture-09---recursion">Lecture 09   Recursion</a></li>
+    <li><a href="#lecture-10---tree-recursion">Lecture 10   Tree Recursion</a></li>
+    <li><a href="#lecture-11---sequences">Lecture 11   Sequences</a></li>
+    <li><a href="#lecture-12---containers">Lecture 12   Containers</a></li>
+    <li><a href="#lecture-13---data-abstraction">Lecture 13   Data Abstraction</a></li>
+    <li><a href="#lecture-14---trees">Lecture 14   Trees</a></li>
+    <li><a href="#lecture-15---mutability">Lecture 15   Mutability</a></li>
+    <li><a href="#lecture-16---iterators">Lecture 16   Iterators</a></li>
+    <li><a href="#lecture-17---generators">Lecture 17   Generators</a></li>
+    <li><a href="#lecture-18---objects">Lecture 18   Objects</a></li>
+    <li><a href="#lecture-19---attributes">Lecture 19   Attributes</a></li>
+    <li><a href="#lecture-20---inheritance">Lecture 20   Inheritance</a></li>
+    <li><a href="#lecture-21---representation">Lecture 21   Representation</a></li>
+    <li><a href="#lecture-22---composition">Lecture 22   Composition</a></li>
+    <li><a href="#lecture-23---efficiency">Lecture 23   Efficiency</a></li>
+    <li><a href="#lecture-24---decomposition">Lecture 24   Decomposition</a></li>
+    <li><a href="#lecture-25---data-examples">Lecture 25   Data Examples</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/cs-61a-%E7%AC%94%E8%AE%B0/">
+                <img src="/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian_hu_fdb6c729d050b10a.png"
+                        srcset="/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian_hu_fdb6c729d050b10a.png 800w, /p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian_hu_879f5d0d4674066f.png 1600w"
+                        width="800" 
+                        height="467" 
+                        loading="lazy"
+                        alt="Featured image of post CS 61A 笔记" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/cs-61a-%E7%AC%94%E8%AE%B0/">CS 61A 笔记</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2025-07-24</time>
+            </div>
+        
+        
+        <div class="article-lastmod">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
+                <time>
+                    2025-07-24  11:43:00 (&#43;08:00)
+                </time>
+            </div>
+        
+        <div>
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
+            <time class="article-words">
+                5810 字
+            </time>
+        </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="cs-61a">CS 61A
+</h1><h2 id="test-the-code-in-hwlab">Test the code in HW/Lab
+</h2><p>use ok:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">py ok --local -q &lt;question_name&gt; 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>use ok interactively:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">py ok --local -q &lt;question_name&gt;  -i 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>use Python&rsquo;s doctest:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">py -m doctest &lt;file_name.py&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lecture-01---welcome">Lecture 01   Welcome
+</h2><p>Python code consists of <strong>expressions</strong> and <strong>statements</strong></p>
+<ul>
+<li>
+<p>Statements typically describe actions.</p>
+<ul>
+<li>assignment statement</li>
+</ul>
+</li>
+<li>
+<p>expressions typically describe computations.</p>
+<ul>
+<li>a number</li>
+<li>numbers combined with mathematical operators
+<ul>
+<li>a compound expression</li>
+<li>the interperter will <strong>evaluate</strong>（求值）</li>
+<li>using infix notation</li>
+</ul>
+</li>
+<li>call expression
+<ul>
+<li>applying a function to some arguments</li>
+<li><em>Operator(Operand, Operand)</em></li>
+<li>Function notation has three principal advantages over the mathematical convention of infix notation:
+<ol>
+<li>arbitrary number of arguments</li>
+<li>a straightforward way to nested expressions</li>
+<li>simple forms (without square root, superscripts, &hellip;)</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Python 代码由 expressions 和 statements 两部分组成。statements 用于描述 actions ，比如赋值；expressions 用于描述 computations ，比如数字，计算表达式，函数调用表达式。</p>
+<p>函数表示相较传统的中序表达式，有一系列的优点。</p>
+<h2 id="lecture-02---functions">Lecture 02   Functions
+</h2><p>built-in functions and built-in names</p>
+<p>assignment statement</p>
+<ul>
+<li>name = expression</li>
+<li>python will evaluate the expression and bind it to the name</li>
+<li>it&rsquo;s possible to bing mutiple names to values in one single statement</li>
+<li>assignment statements can also be used to give names to functions</li>
+</ul>
+<p>Defining Functions</p>
+<ul>
+<li>def statement &amp; return expression</li>
+<li>the top line between the def and the colon is called the <strong>function signature</strong> (  &lt;name&gt; (&lt;formal parameters&gt;)  )</li>
+<li>the function <strong>body</strong> is everything that&rsquo;s indented after the first line</li>
+<li>execution procesure for def statement:
+<ul>
+<li>create a funtion with signature</li>
+<li>set the body of that funtion</li>
+<li>bind &lt;name&gt; to that function in the current frame</li>
+</ul>
+</li>
+<li>procedure for calling/applying user-defined funtions (ver 1):
+<ul>
+<li>Add a local frame, forming a new environment</li>
+<li>Bind the function&rsquo;s formal parameters to its arguments in that frame</li>
+<li>execute the body of the funtion in that new environment</li>
+</ul>
+</li>
+</ul>
+<p>Environment</p>
+<ul>
+<li>Looking Up Names In Environments
+<ul>
+<li>An environment is a sequence of frames</li>
+<li>A name evaluates to the value bound to that name in the earliest frame of the current environment in which that name is found</li>
+</ul>
+</li>
+<li>Environment Diagrams
+<ul>
+<li>Environments are real things. They&rsquo;re the way in which an interpreter for a programming language keeps track of what names mean</li>
+</ul>
+</li>
+<li>assignments statements change the bindings between names and values in frames</li>
+</ul>
+<p>Print and None</p>
+<ul>
+<li>None indicates that nothing is returned. A funtions that does not explicitly return a value will return None.</li>
+<li>None is not displayed by the interpreter as the value of an expression</li>
+<li>Pure Funtions just return values; Non-Pure Functions have side effect</li>
+</ul>
+<p>在 Python 中，assignment statements 用于给 names 绑定值。</p>
+<p>def 语句可以用来定义函数，它包括 function signature 和 function body ，并且 def 语句会将 signature 中的 name 在当前帧上绑定在定义的函数上。调用函数时会建立一个新的 frame，将参数传入新的 frame 中，在里面执行函数的 body 。</p>
+<p>Formal parameter 是形参，argument 是实参</p>
+<p>一系列的 frame 构成 environment，environment 用于确定 name 指代了什么。寻找一个 name 的意义时，会找到最近的出现该 name 的 frame 中的值。</p>
+<p>如果一个函数什么都不返回，那么它会返回 None</p>
+<h2 id="lecture-03---control">Lecture 03   Control
+</h2><p>Environment</p>
+<p>Python features</p>
+<ul>
+<li>operators
+<ul>
+<li>2013 / 10 =&gt; 201.3 (truediv), 2013 // 10 =&gt; 201 (floordiv)</li>
+<li>from operator import add, mul, truediv, floordiv, mod</li>
+</ul>
+</li>
+<li>assignment statement (muliple values)
+<ul>
+<li>return n // d, n % d</li>
+<li>q, r = func(2013, 10)</li>
+</ul>
+</li>
+<li>documentation and doctest
+<ul>
+<li>doc string: the first line below the def line in the def statement</li>
+<li>example interactive session: can be simulated by &ldquo;py -m doctest &lt;filename&gt;&rdquo;</li>
+<li>&ldquo;py -m doctest -v &lt;filename&gt;&rdquo; will show details</li>
+</ul>
+</li>
+<li>default values
+<ul>
+<li>def func(n, d=10)</li>
+</ul>
+</li>
+</ul>
+<p>Conditional Statements</p>
+<ul>
+<li>Compound Statements
+<ul>
+<li><strong>Clause</strong>: Header + indented statements</li>
+<li>those indented statements are called the <strong>Suite</strong> of the clause</li>
+<li>The first header determines a statement&rsquo;s type, the header of a clause &ldquo;controls&rdquo; the suite that follows (eg. def statement)</li>
+</ul>
+</li>
+<li>if, elif, else</li>
+<li>Boolean Contexts
+<ul>
+<li>False values: False, 0, &lsquo;&rsquo;, None</li>
+<li>True values: Anything else (True)</li>
+</ul>
+</li>
+</ul>
+<p>Iteration</p>
+<ul>
+<li>while statements
+<ul>
+<li>evaluate the header&rsquo;s expression, if true, then execute the suite</li>
+</ul>
+</li>
+</ul>
+<p>代码执行时，会在被执行代码的 environment 中寻找 name 的意义</p>
+<p>Python 有一些特性：运算符、多元素的赋值、doctest、函数参数的默认值</p>
+<p>复合语句总是由一系列 clause 组成，每个 clause 中先是一个 header ，然后是冒号，然后一系列缩进的 statement</p>
+<p>Python 中的 False 可以是 False, 0, 空字符串, None 等，其他值都是 True</p>
+<h2 id="lecture-04---high-order-functions">Lecture 04   High-Order Functions
+</h2><p>The Fibonacci Sequnce</p>
+<p>Control</p>
+<ul>
+<li>The Condition Statements can skip clause, but the Call Expression will evaluate all of the subexpressions</li>
+</ul>
+<p>Control Expressions</p>
+<ul>
+<li>short-circuiting</li>
+<li>and: evaluate the &lt;left&gt; first, if true, then evaluate the &lt;right&gt;</li>
+<li>or: evaluate the &lt;left&gt; first, if false, then evaluate the &lt;right&gt;</li>
+</ul>
+<p>Higher-Order Functions</p>
+<ul>
+<li>to generalize patterns by defining functions that take arguments, that give us back the specific instances of those patterns</li>
+<li>a formal parameter can be bound to a function</li>
+<li>a function can be the return value
+<ul>
+<li>Functions defined within other function bodies are bound to names in a local frame</li>
+<li>a local def statement can refer to names in the enclosing function</li>
+</ul>
+</li>
+<li>The Purpose of Higher-Order Functions
+<ul>
+<li>Functions are first class: Functions can be manipulated as values in Python, meaning they can be passed as arguments, they can be returned as returned values.</li>
+<li>Higher-order functions: Express general methods of computation, Remove repetition from programs, Separate concerns among functions</li>
+</ul>
+</li>
+<li>assert statement
+<ul>
+<li>assert &lt;boolean expression&gt;, &lt;error message&gt;</li>
+<li>if the expression evaluates to a false value, then the error message will be printed.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">make_adder</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;&#39;&#39; A function that returns a function
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">adder</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">k</span> <span class="o">+</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">adder</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>前面的 Fibonacci Sequence 和 Control Statements 与 Call Expressions 之间的比较是为了深化对控制语句的理解</p>
+<p>Python 中的 and 和 or 有短路逻辑</p>
+<p>Higher-Order Functions 可以通过定义接收参数的函数来概括模式，从而返回这些模式的具体实例。函数可以作为参数，也可以作为返回值。函数是第一类值</p>
+<p>定义在其他函数之中的函数可以引用它所在函数的 name，内层函数本身会绑定到外层函数所在 local frame 的 name 上</p>
+<p>assert statements 可以用来报错，当它后面的表达式为假时，打印错误信息</p>
+<h2 id="lecture-05---environments">Lecture 05   Environments
+</h2><p>Environments</p>
+<ul>
+<li>
+<p>Environments Enable Higher_Order Functions</p>
+<ul>
+<li>
+<p>Higher-order function: A function that takes a funtion as an argument value or returns a funtion as a return value</p>
+</li>
+<li>
+<p>Applying a user-defined function:</p>
+<ul>
+<li>create a new frame</li>
+<li>bind formal parameters to arguments</li>
+<li>execute the body</li>
+</ul>
+</li>
+<li>
+<p>Environment Diagrams for Nested Def Statements</p>
+<ul>
+<li>Every user-defined function has a parent frame (often global)</li>
+<li>The parent of a function is the frame in which it was defined</li>
+<li>Every local frame has a parent frame (often global)</li>
+<li>The parent of a frame is the parent of the function called</li>
+</ul>
+</li>
+<li>
+<p>How to Draw an Environment Diagram</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Local Names</p>
+<ul>
+<li>Local Name are not Visible to Other (Non-Nested) Functions</li>
+</ul>
+<p>Lambda Expressions</p>
+<ul>
+<li>No &ldquo;return&rdquo; keyword in lambda expressions!</li>
+<li>must be a <strong>single</strong> expression (and Lambda expressions in Python cannot contain statements at all)</li>
+<li>Lambda expressions are not common in Python, but important in general</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">square</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">((</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">)(</span><span class="mi">9</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Fuction Currying</p>
+<ul>
+<li>Transforming a multi-argument function into a single-argument, higher-order function</li>
+</ul>
+<p>对于普通的函数，它在环境图中的 parent 就是 Global（这表示它们是在 Global frame 中被 define 的），而对于嵌套的内层函数，它的 parent 是它的外层函数被调用时创建的 frame（它们是在外层函数所在的 frame 中被 define 的）</p>
+<p>Lambda 表达式中只能放 expression ，不能放 statement 。Lambda 表达式和 def 语句会按照相同的行为创建函数（决定函数的 behavior, parent 等），但是 def 语句会给函数一个 intrinsic name 而 Lambda 表达式不会</p>
+<p>柯里化（Currying）是一种处理多元函数的方法。它产生一系列连锁函数，其中每个函数固定部分参数，并返回一个新函数，用于传回其它剩余参数的功能。（转自网络）</p>
+<h2 id="lecture-06---sounds-optional">Lecture 06   Sounds (Optional)
+</h2><p>Why do we use higher-order functions</p>
+<ul>
+<li>Example: WAV files</li>
+</ul>
+<h2 id="lecture-07---functional-abstraction">Lecture 07   Functional Abstraction
+</h2><p>Lambda Function Environments</p>
+<p>Return Statements</p>
+<ul>
+<li>inverse
+<ul>
+<li>The inverse of a function is to return a g() such that it&rsquo;s the case that f(x) passed into g gives us back x</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return the first positive integer x that makes f(x) equals to True&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;Return g(y) such that g(f(x)) = x.&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">search</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Abstraction</p>
+<ul>
+<li>Function Abstraction</li>
+<li>Choosing Name</li>
+<li>Which Values Deserve a Name
+<ul>
+<li>Repeated compound expressions</li>
+<li>Meaningful parts of complex expressions</li>
+</ul>
+</li>
+</ul>
+<p>Errors &amp; Traceback</p>
+<ul>
+<li>syntax error, runtime error, logical error</li>
+<li>traceback</li>
+</ul>
+<p>inverse 表示反函数</p>
+<p>编写代码有三种 error，其中 runtime error 会有 traceback 可以参考</p>
+<h2 id="lecture-08---function-examples">Lecture 08   Function Examples
+</h2><p>Decorators</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>  
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34; Return a function.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        
+</span></span></span><span class="line"><span class="cl"><span class="s2">        Why do we use a function to return a function, rather than directly using one function?
+</span></span></span><span class="line"><span class="cl"><span class="s2">        
+</span></span></span><span class="line"><span class="cl"><span class="s2">        That is because we need the outer function to receive a parameter, which decide which function the inner function will call
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">        In other word, what we need is not a fixed function, but a function that would flexibly call the function we want. So we need a outer function to program the inner function.
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">traced</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34; This function does what you want the decorator to do.
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">            Call print before fn, then call fn, then pass what fn returned.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        
+</span></span></span><span class="line"><span class="cl"><span class="s2">            What is fn? The outer funtion will told.
+</span></span></span><span class="line"><span class="cl"><span class="s2">        &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Calling&#39;</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="s1">&#39;on argument&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">traced</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@trace</span>   
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># is identical to :</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   square = trace(square)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">sum_squares_up_to</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="n">square</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">total</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">erasefunc</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">tmp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">tmp</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@erasefunc</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">square</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>decorator 感觉可以理解为外层函数接收需要被装饰的函数 f ，返回的内层函数负责调用 f ，并额外进行一些操作，看作是装饰。</p>
+<h2 id="lecture-09---recursion">Lecture 09   Recursion
+</h2><p>Self-Reference</p>
+<ul>
+<li>Return a function by its own name</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">print_all</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">print_all</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">print_all</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="mi">3</span><span class="p">)(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">print_sums</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">next_sum</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">print_sums</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">next_sum</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">print_sums</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="mi">3</span><span class="p">)(</span><span class="mi">5</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Recursive Functions</p>
+<ul>
+<li>Conditional statements check for base cases
+<ul>
+<li>Base cases are evaluated without recursive calls</li>
+<li>Recursive cases are evaluated with recursive calls</li>
+</ul>
+</li>
+</ul>
+<p>Mutual Recursion</p>
+<ul>
+<li>occurs when two different functions call each other</li>
+</ul>
+<p>Recursion and Iteration</p>
+<ul>
+<li>Converting Recursion to Iteration:
+<ul>
+<li>Figure out what state must be maintained by the iterative funciton</li>
+</ul>
+</li>
+</ul>
+<h2 id="lecture-10---tree-recursion">Lecture 10   Tree Recursion
+</h2><p>本节通过 打印右凸三角阶梯型数字、打印右凹阶梯型数字、求斐波那契数列、解决整数划分问题 来加深对递归的理解。</p>
+<p>整数划分：给定 $n, m$ ，使用不超过 $m$ 的若干可重复正整数相加得到 $n$ ，共有多少种情况？</p>
+<p>分析：两种情况，使用至少一次 $m$，和不使用 $m$，即 $f_{n,m} = f_{n-m,m} + f_{n,m-1}$ ，递归求解</p>
+<h2 id="lecture-11---sequences">Lecture 11   Sequences
+</h2><p>Lists</p>
+<ul>
+<li>基本用法</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">41</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">49</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">odds</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># odds[2] =&gt; 47</span>
+</span></span><span class="line"><span class="cl"><span class="n">getitem</span><span class="p">(</span><span class="n">odds</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># getitem(odds, 0) =&gt; odds[0] =&gt; 41 (getitem在operator模块中)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">odds</span><span class="p">)</span>  <span class="c1"># len(odds) =&gt; 4</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>列表的合并和重复</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">digits</span> <span class="o">*</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; [2, 7, 1, 8, 2, 8, 1, 8, 2, 8]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>列表嵌套</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">myList</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="ow">in</span> <span class="n">digits</span> <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl"><span class="mi">5</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">digits</span> <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span> <span class="ow">in</span> <span class="n">digits</span> <span class="c1"># =&gt; False</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>For Statements</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">for &lt;name&gt; in &lt;expression&gt;:
+</span></span><span class="line"><span class="cl">	&lt;suite&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>the header &lt;expression&gt; must yield an iterable value (a sequence)</li>
+<li>Sequence Unpacking:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">pairs</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Range</p>
+<ul>
+<li>A range is a sequence of consecutive integers</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># =&gt; -2, -1, 0, 1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># =&gt; 0, 1, 2, 3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Convert to a list (List constructor)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1"># =&gt; [-2, -1, 0, 1]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>for _ in range</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Go Bears!&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>List Comprehensions</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">letters</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">letters</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; [&#39;d&#39;, &#39;e&#39;, &#39;m&#39;, &#39;o&#39;]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">odds</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; [2, 4, 6, 8, 10]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">odds</span> <span class="k">if</span> <span class="mi">25</span> <span class="o">%</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; [1, 5]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lecture-12---containers">Lecture 12   Containers
+</h2><p>Closure Property of Data Types</p>
+<ul>
+<li>The result of combination can itself be combined using the same method (Lists can contain lists as elements)</li>
+</ul>
+<p>Slicing</p>
+<ul>
+<li>slicing operator: <code>[:]</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">odds</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># =&gt; [5, 7]</span>
+</span></span><span class="line"><span class="cl"><span class="n">odds</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># =&gt;[3, 5, 7]</span>
+</span></span><span class="line"><span class="cl"><span class="n">odds</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># =&gt; [5, 7, 9, 11]</span>
+</span></span><span class="line"><span class="cl"><span class="n">odds</span><span class="p">[:]</span> <span class="c1"># =&gt; [3, 5, 7, 9, 11]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>slicing creates new values</li>
+</ul>
+<p>Processing Container Values</p>
+<ul>
+<li>Sequence Aggregation
+<ul>
+<li>Several built-in functions take iterable arguments and aggregate them into a value</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nb">sum</span><span class="p">(</span><span class="n">iterable</span><span class="p">[,</span> <span class="n">start</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#34;iterable&#34; can be a list</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#34;[]&#34; means optional</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># return the sum of an iterable of numbers plus the value of parameter &#39;start&#39; (the default value of &#39;start&#39; is 0, which means if the members of &#39;iterable&#39; are lists, you need to explicitly provide that &#39;start&#39; is &#39;[]&#39; (empty list), or it will throw an error)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># if you sum a list of lists, you get a list containing the elements of those lists.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sum([ [1], [2, 3], [4] ], []) =&gt; [1, 2, 3, 4]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sum([ [[1]], [2] ], []) =&gt; [[1], 2]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">max</span><span class="p">(</span><span class="n">iterable</span><span class="p">[,</span> <span class="n">key</span><span class="o">=</span><span class="n">func</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl"><span class="nb">max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="o">...</span><span class="p">[,</span> <span class="n">key</span><span class="o">=</span><span class="n">func</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># return the largest argument</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># key function: applies a function to every element and computes the maximum based on the return values (notice: the return value of max() is x, not f(x)!)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">min</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">all</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Return True if bool(x) if True for all values x in the iterable.</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># If the iterable is empty, return True</span>
+</span></span><span class="line"><span class="cl"><span class="nb">any</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Strings</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="s1">&#39;nihao&#39;</span>  <span class="c1"># 这样表示的字符串中不能有单引号</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;nihao&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34; multiple lins string
+</span></span></span><span class="line"><span class="cl"><span class="s2">the second line
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>  <span class="c1"># 三引号的字符串可以写多行</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;line1</span><span class="se">\n</span><span class="s1">line2&#39;</span> <span class="c1"># \n 换行</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">city</span> <span class="o">=</span> <span class="s1">&#39;Berkeley&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>  <span class="c1"># =&gt; 8</span>
+</span></span><span class="line"><span class="cl"><span class="n">city</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># =&gt; &#39;k&#39;  (returns a string)</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;here&#39;</span> <span class="ow">in</span> <span class="s2">&#34;where&#39;s Waldo?&#34;</span>  <span class="c1"># =&gt; True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Dictionaries</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="p">{}</span>  <span class="c1"># empty dictionary</span>
+</span></span><span class="line"><span class="cl"><span class="n">numerals</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">numerals</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span>  <span class="c1"># =&gt; 10</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="n">numerals</span><span class="p">)</span>  <span class="c1"># =&gt; [&#39;I&#39;, &#39;V&#39;, &#39;X&#39;]</span>
+</span></span><span class="line"><span class="cl"><span class="n">numerals</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>  <span class="c1"># =&gt; dict_values([1, 5, 10])</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="n">numerals</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>  <span class="c1"># =&gt; [1, 5, 10]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>A key of a dictionary cannot be a list or a dictionary (or any mutable type)</li>
+<li>Dictionary Comprehension</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">{&lt;key exp&gt;: &lt;value exp&gt; for &lt;name&gt; in &lt;iter exp&gt; if &lt;filter exp&gt;}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="p">{</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">}</span>  <span class="c1"># =&gt; {9: 3, 16: 4, 25: 5}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lecture-13---data-abstraction">Lecture 13   Data Abstraction
+</h2><p>Data Abstraction: Rational Numbers</p>
+<ul>
+<li>constructor</li>
+<li>selector</li>
+</ul>
+<p>Abstraction Barriers</p>
+<p>Pair</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">pair</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pair</span>  <span class="c1"># x = 1, y = 2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Data Representations</p>
+<p>主要讲数据封装抽象的思想</p>
+<h2 id="lecture-14---trees">Lecture 14   Trees
+</h2><p>Tree Abstraction</p>
+<ul>
+<li>Recursive description
+<ul>
+<li>A tree has a root label and a list of branched</li>
+<li>Each branch is a tree</li>
+<li>A tree with zero branches is called a leaf</li>
+</ul>
+</li>
+<li>Relative description
+<ul>
+<li>Each location in a tree is called a node</li>
+<li>Each node has a label that can be any value</li>
+<li>One node can be the parent/child of another</li>
+</ul>
+</li>
+</ul>
+<p>Implementing the Tree Abstraction</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">tree</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">branches</span> <span class="o">=</span> <span class="p">[]):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">branch</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">is_tree</span><span class="p">(</span><span class="n">branch</span><span class="p">),</span> <span class="s1">&#39;branched must be trees&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">branches</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">tree</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">branches</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">tree</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">is_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">list</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">branch</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_tree</span><span class="p">(</span><span class="n">branch</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">is_leaf</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="ow">not</span> <span class="n">branches</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">count_leaves</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">is_leaf</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">branch_counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">count_leaves</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">branch_counts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">leaves</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">is_leaf</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">[</span><span class="n">label</span><span class="p">(</span><span class="n">tree</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">leaves</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">increment_leaves</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">is_leaf</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">tree</span><span class="p">(</span><span class="n">label</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bs</span> <span class="o">=</span> <span class="p">[</span><span class="n">increment_leaves</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">tree</span><span class="p">(</span><span class="n">label</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">bs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">increment</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">tree</span><span class="p">(</span><span class="n">label</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="n">increment</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">(</span><span class="n">t</span><span class="p">)])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lecture-15---mutability">Lecture 15   Mutability
+</h2><p>Object</p>
+<ul>
+<li>A type of object is called a class; classes are first-class values in Python</li>
+<li>Object-oriented programming:
+<ul>
+<li>A metaphor for organizing large programs</li>
+<li>Special syntax that can improve the composition of programs</li>
+</ul>
+</li>
+<li>In Python, every value is an object
+<ul>
+<li>All objects have <strong>attributes</strong></li>
+<li>A lot of data manipulation happens through object <strong>methods</strong></li>
+</ul>
+</li>
+</ul>
+<p>String (example)</p>
+<ul>
+<li>Representing
+<ul>
+<li>ASCII</li>
+<li>Unicode</li>
+</ul>
+</li>
+</ul>
+<p>Mutation Operations</p>
+<ul>
+<li>mutation is a word that&rsquo;s used whenever there&rsquo;s a change to an object</li>
+<li>All names that refer to the same object are affected by a mutation</li>
+<li>Only objects of mutable types can change: lists &amp; dictionaries</li>
+</ul>
+<p>Tuples</p>
+<ul>
+<li>Anything separated by commas is evaluated as a tuple</li>
+<li>A lot of people always put the parentheses around them just to be clear about what&rsquo;s going on</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span>  <span class="c1"># =&gt; (3, 4, 5, 6)</span>
+</span></span><span class="line"><span class="cl"><span class="p">()</span>  <span class="c1"># empty tuple</span>
+</span></span><span class="line"><span class="cl"><span class="nb">tuple</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>  <span class="c1"># =&gt; (3, 4, 5)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span><span class="p">,</span>  <span class="c1"># =&gt; (2,) (a tuple with only one element)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># =&gt; (3, 4, 5, 6)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">5</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># =&gt; True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Tuples are immutable values
+<ul>
+<li>that means it is possible to use them as the keys in a dictionary</li>
+<li>(it is not allowed to use a list as a key in a dictionary or you will get the error &ldquo;unhashable type list&rdquo;)</li>
+<li>Immutable values are protected from mutation</li>
+<li>A immutable sequence may still change if it contains a mutable value as an element</li>
+</ul>
+</li>
+</ul>
+<p>Mutation</p>
+<ul>
+<li>Identity Operators
+<ul>
+<li>Identity: <code>&lt;exp0&gt; is &lt;exp1&gt;</code>
+<ul>
+<li>evaluates to True if both &lt;exp0&gt; and &lt;exp1&gt; evaluate to the same object</li>
+</ul>
+</li>
+<li>Equality: <code>&lt;exp0&gt; == &lt;exp1&gt;</code>
+<ul>
+<li>evaluates to True if both &lt;exp0&gt; and &lt;exp1&gt; evaluate to equal values</li>
+</ul>
+</li>
+<li>Identical objects are always equal values, but not the other way around</li>
+</ul>
+</li>
+<li>A default argument value is <strong>part of a function value</strong>, not generated by a call</li>
+</ul>
+<p>Mutable Functions</p>
+<p>实现函数中持久存储数据：在外层函数中用列表存要存储的数据，在内层函数实现修改，然后返回内层函数</p>
+<h2 id="lecture-16---iterators">Lecture 16   Iterators
+</h2><p>Iterators</p>
+<ul>
+<li>A container can provide an iterator that provides access to its elements in some order</li>
+<li>built-in function: <code>iter(iterable)</code>
+<ul>
+<li>Return an iterator over the elements of an iterable value</li>
+</ul>
+</li>
+<li>built-in function: <code>next(iterator)</code>
+<ul>
+<li>Return the next element in an iterator</li>
+<li>The iterator will move advanced at the same time</li>
+</ul>
+</li>
+<li>An iterable value is any value that can be passed to <code>iter</code> to produce an iterator</li>
+<li>An iterator value is returned from <code>iter</code> and can be passed to next; all iterators are mutable</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">t</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">next</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># =&gt; [1, 2]</span>
+</span></span><span class="line"><span class="cl"><span class="nb">next</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># =&gt; [4, 5]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Dictionary Iteration</p>
+<ul>
+<li>The order of items in a dictionary is the order in which they were added (starting at Python 3.6. In older versions, items in a dictionary appeared in an arbitrary order)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">k</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">v</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>If the dictionary changes size, then we can&rsquo;t use any of the iterators we&rsquo;ve constructed</li>
+</ul>
+<p>For Statements</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ri</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">next</span><span class="p">(</span><span class="n">ri</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ri</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># =&gt; 4 \n 5</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ri</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>  <span class="c1"># =&gt; nothing, because we&#39;re already at the end of ri</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Built-In Iterator Functions</p>
+<ul>
+<li>
+<p>Many built-in Python sequence operations return iterators that compute results lazily (lazily computation: only computed when it has been requested)</p>
+</li>
+<li>
+<p><code>map(func, iterable)</code> Iterate over func(x) for x in iterable</p>
+<ul>
+<li>applies the func to each element in the iterable</li>
+<li>instead of applying it immediately, it returns and iterator, which iterates over the values func(x) for every x in the iterable</li>
+</ul>
+</li>
+<li>
+<p><code>filter(func, iterable)</code> Iterate over x in iterable if func(x)</p>
+</li>
+<li>
+<p><code>zip(first_iter, second_iter)</code> Iterate over co-indexed (x, y) pairs</p>
+</li>
+<li>
+<p><code>reversed(sequence)</code> Iterate over x in a sequence in reverse order</p>
+</li>
+<li>
+<p>To view the contents of an iterator, place the resulting elements into a container</p>
+<ul>
+<li><code>list(iterable)</code></li>
+<li><code>tuple(iterable)</code></li>
+<li><code>sorted(iterable)</code> Created a sorted list</li>
+</ul>
+</li>
+</ul>
+<p>Zip</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># returns an iterator over co-indexed tuples</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; [(1, 3), (2, 4)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># if one iterable is longer than the other, zip only iterates over matches and skips extras</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; [(1, 3), (2, 4)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># more than two iterables can be passed to zip</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; [(1, 3, 6), (2, 4, 7)]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Using Iterators</p>
+<ul>
+<li>Reasons for Using Iterators
+<ul>
+<li>Code that processes and iterator or iterable makes few assumptions about the data itself</li>
+<li>that means Changing the data representation from a list to a tuple,map object, or dict_keys doesn&rsquo;t require rewriting code.</li>
+<li>An iterator bundles together a sequence and a position within that sequence as one object</li>
+</ul>
+</li>
+</ul>
+<h2 id="lecture-17---generators">Lecture 17   Generators
+</h2><p>Generators</p>
+<ul>
+<li>A generator function is a function that <strong>yield</strong>s values instead of <strong>return</strong>ing them</li>
+<li>A normal function returns once; a generator function can yield multiple times</li>
+<li>A generator is an iterator created automatically by calling a generator function</li>
+<li>When a generator function is called, it returns a generator that iterates over its yields</li>
+</ul>
+<p>Generators &amp; Iterators</p>
+<ul>
+<li>A <code>yield from</code> statement yields all values from an iterator or iterable (Python 3.3)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">a_then_b_1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">b</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="n">x</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">a_then_b_2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield from</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl">    <span class="k">yield from</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># a_then_b_1 and a_then_b_2 are completely equivalent</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>If you&rsquo;re ever writing a program there there are many possibilities and you only want a few of them, sometimes this generator function approach can not only be easier to write, easier to read, but also deamatically faster to run</li>
+</ul>
+<h2 id="lecture-18---objects">Lecture 18   Objects
+</h2><p>Object-Oriented Programming</p>
+<p>Class Statements</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Account</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># __init__ is a special method name for the function that constructs an Accoount instance</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account_holder</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">holder</span> <span class="o">=</span> <span class="n">account_holder</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">	<span class="c1"># self is the instance of the Account class on which deposit() was invoked: a.deposit(10)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">+</span> <span class="n">amount</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Creating Instances</p>
+<ul>
+<li>the <code>__init__</code> method is sometimes called a constructor</li>
+<li>Instance Attributes
+<ul>
+<li>An object&rsquo;s attributes are accessed and modified using dot expressions</li>
+<li>Any attribute can be assigned any value
+<ul>
+<li>it&rsquo;s OK to introduce a new attribute that wasn&rsquo;t named before. A new attribute can be added at any time in Python</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Methods</p>
+<ul>
+<li>All invoke methods have access to the object via the self parameter, and so they can all sccess and manipulate the object&rsquo;s attributes</li>
+<li>the dot notation automatically supplies the first argument (<code>self</code>)</li>
+</ul>
+<h2 id="lecture-19---attributes">Lecture 19   Attributes
+</h2><p>Class Attributes</p>
+<ul>
+<li>Assignment &amp; def statements in the suite of class statement create attributes of the class</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Clown</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nose</span> <span class="o">=</span> <span class="s1">&#39;big and red&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">dance</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;No thanks&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Clown</span><span class="o">.</span><span class="n">nose</span>  <span class="c1"># =&gt; &#39;big and red&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Clown</span><span class="o">.</span><span class="n">dance</span><span class="p">()</span>  <span class="c1"># =&gt; &#39;No thanks&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Account</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">interest</span> <span class="o">=</span> <span class="mf">0.02</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="n">tom_account</span> <span class="o">=</span> <span class="n">Account</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">tom_account</span><span class="o">.</span><span class="n">interest</span>  <span class="c1"># =&gt; 0.02</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Attribute Lookup</p>
+<ul>
+<li>When evaluete a dot expression, the name will be matched against the instance attributes of that object, then the class attribute value</li>
+<li><code>getattr(instance, attribute_name)</code> look up an attribute using a string (attribute_name)</li>
+<li><code>hasattr(instance, attribute_name)</code> whether an attribute of this name exists</li>
+</ul>
+<p>Attribute Assignment</p>
+<ul>
+<li>if the object is an instance, then assignment sets an instance attribute</li>
+<li>if the object is a class, then assignment sets a class attribute</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Account</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">interest</span> <span class="o">=</span> <span class="mf">0.02</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="n">tom_account</span> <span class="o">=</span> <span class="n">Account</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># this is attribute assignment that adds the attribute named interest to the Tom account, not modifies the attribute in Account class:</span>
+</span></span><span class="line"><span class="cl"><span class="n">tom_account</span><span class="o">.</span><span class="n">interest</span> <span class="o">=</span> <span class="mf">0.08</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Method Calls</p>
+<p>Bound Methods</p>
+<ul>
+<li>Object + Function = Bound Method</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># there are two different ways to call method:</span>
+</span></span><span class="line"><span class="cl"><span class="n">Account</span><span class="o">.</span><span class="n">deposit</span><span class="p">(</span><span class="n">tom_account</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">tom_account</span><span class="o">.</span><span class="n">deposit</span><span class="p">(</span><span class="mi">1007</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lecture-20---inheritance">Lecture 20   Inheritance
+</h2><p>Inheritance</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">class &lt;name&gt;(&lt;base class&gt;):
+</span></span><span class="line"><span class="cl">	&lt;suite&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Account</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="n">interest</span> <span class="o">=</span> <span class="mf">0.02</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">account_holder</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">holder</span> <span class="o">=</span> <span class="n">account_holder</span>       
+</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">deposit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">+</span> <span class="n">amount</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span>
+</span></span><span class="line"><span class="cl">	<span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">amount</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s1">&#39;Insufficient funds&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span> <span class="o">-</span> <span class="n">amount</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">balance</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">CheckingAccount</span><span class="p">(</span><span class="n">Account</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">withdraw_fee</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">interest</span> <span class="o">=</span> <span class="mf">0.01</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Account</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">withdraw_fee</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>Looking up attribute names on classes
+<ul>
+<li>if it names an attribute in the class, return the attribute value</li>
+<li>otherwise, look up the name in the base class, if there is one</li>
+</ul>
+</li>
+</ul>
+<p>Object-Oriented Design</p>
+<ul>
+<li>Designing for Inheritance</li>
+<li>Inheritance and Composition
+<ul>
+<li>Inheritance: &ldquo;is a&rdquo;, Composition: &ldquo;has a&rdquo;</li>
+</ul>
+</li>
+</ul>
+<p>Multiple Inheritance</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AsSeenOnTVAccount</span><span class="p">(</span><span class="n">CheckingAccount</span><span class="p">,</span> <span class="n">SavingsAccount</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lecture-21---representation">Lecture 21   Representation
+</h2><p>String Representations</p>
+<ul>
+<li>In Python, all objects produce two string representations
+<ul>
+<li>The <code>str</code> is legible to humans</li>
+<li>The <code>repr</code> is legible to the Python interpreter</li>
+</ul>
+</li>
+<li>The <code>str</code> and <code>repr</code> strings are often the same, but not always</li>
+<li><code>repr(object)</code> return the canonical string representation of the object. For most object types, <code>eval(repr(object))</code> == <code>object</code></li>
+<li>The result of calling <code>repr </code>on a value is what Python prints in an interactive session</li>
+<li>Some objects do not have a simple Python-readable string</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="mf">12e12</span>
+</span></span><span class="line"><span class="cl"><span class="mf">12000000000000.0</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">repr</span><span class="p">(</span><span class="nb">min</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;&lt;built-in function min&gt;&#39;</span> <span class="c1"># do not have a simple Python-readable string</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>The result of calling <code>str</code> on the value of an expression is what Python prints using the <code>print</code> function</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">fractions</span> <span class="kn">import</span> <span class="n">Fraction</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">half</span> <span class="o">=</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">repr</span><span class="p">(</span><span class="n">half</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;Fraction(1, 2)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">str</span><span class="p">(</span><span class="n">half</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;1/2&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">half</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">half</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">Fraction</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">half</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="mf">0.5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>F-Strings</p>
+<ul>
+<li>String interpolation involves evaluating a string literal that contains expressions</li>
+<li>The result of evaluating an f-string literal contains the str string of the value of each sub-expression.
+<ul>
+<li>Sub-expressions are evaluated in the current environment</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="sa">f</span><span class="s1">&#39;2 + 2 = </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;2 + 2 = 4&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">&gt;&gt;&gt;</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">.&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;7 8 [9]&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="s1">&#39;Ratio(</span><span class="si">{0}</span><span class="s1">, </span><span class="si">{1}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numer</span><span class="p">,</span> <span class="n">denom</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Polymorphic Function</p>
+<ul>
+<li><code>str</code> and <code>repr</code> are both polymorphic; they apply to any object
+<ul>
+<li><code>repr</code> invokes a zero-argument method <code>__repr__</code> on its argument</li>
+<li><code>str</code> invokes a zero-argument method <code>__str__</code> on its argument</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nb">str</span><span class="p">(</span><span class="n">half</span><span class="p">)</span> <span class="o">==</span> <span class="n">half</span><span class="o">.</span><span class="fm">__str__</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>repr</code> will call the class attributes <code>__repr__</code> (not the instance attribute)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">repr</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>str</code> will call <code>__str__</code>. If no <code>__str__</code> attribute is found, use <code>repr</code> string</li>
+<li>Interface
+<ul>
+<li>A shared message (attribute name) that elicits similar behavior from different object classes is a powerful methos of abstraction</li>
+<li>An interface is a set of shared messages, along with a specification of what they mean</li>
+</ul>
+</li>
+</ul>
+<p>Special Method Names</p>
+<ul>
+<li>Certain names are special because they have built-in behavior. These names always start and end with two underscores</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># 以下几种表述是等价的</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Ratio is a user-defined class</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ratio</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">Ratio</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ratio</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="n">Ratio</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ratio</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="fm">__radd__</span><span class="p">(</span><span class="n">Ratio</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Ratio</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># type dispatching</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ohter</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># type coercion</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="n">other</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Ratio</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">    <span class="fm">__radd__</span> <span class="o">=</span> <span class="fm">__add__</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__float__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">numer</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">denom</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>isinstance()</code> return whether an object is an instance of a class or of a subclass thereof</li>
+</ul>
+<h2 id="lecture-22---composition">Lecture 22   Composition
+</h2><p>Linked Lists</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Link</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">empty</span> <span class="o">=</span> <span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">rest</span><span class="o">=</span><span class="n">empty</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="n">rest</span> <span class="ow">is</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span> <span class="n">Link</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">first</span> <span class="o">=</span> <span class="n">first</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">rest</span> <span class="o">=</span> <span class="n">rest</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Linked List Processing</p>
+<p>Linked Lists Mutation</p>
+<p>Tree Class</p>
+<p>Tree Mutation</p>
+<h2 id="lecture-23---efficiency">Lecture 23   Efficiency
+</h2><p>Measuring Efficiency</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># a decorator that will give call counts using f.call_count</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">counted</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">counted</span><span class="o">.</span><span class="n">call_count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">counted</span><span class="o">.</span><span class="n">call_count</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">counted</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Memoization</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="c1"># a decorator</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">memo</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">memoized</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cache</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">cache</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">memoized</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Exponentiation</p>
+<p>Order of Growth Notation</p>
+<p>Orders of Growth</p>
+<p>Space</p>
+<ul>
+<li>At any moment there is a set of active environments</li>
+<li>Memory that is used for other values and frames can be recycled</li>
+<li>Active environments:
+<ul>
+<li>Environments for any function calls currently being evaluated</li>
+<li>Parent environments of functions named in active environments</li>
+</ul>
+</li>
+</ul>
+<h2 id="lecture-24---decomposition">Lecture 24   Decomposition
+</h2><p>Modular Design</p>
+<ul>
+<li>Isolate different parts of a program that address different concerns</li>
+</ul>
+<p>Set Intersection</p>
+<ul>
+<li>线性时间查找两个有序列表重叠部分的方法：
+<ul>
+<li>设置两个指针 $i,j$ ，分别指向两个列表 $s, t$ 的第一个元素</li>
+<li>如果 $s_i &lt; t_j$ ，那么 $s_i$ 一定不与 $t_j$ 及其后面的元素相同（因为有序），所以可以 $i$ 加一</li>
+<li>如果 $s_i = t_j$ ，那么找到一对相同元素， $i, j$ 都加一</li>
+<li>$i, j$ 中任意一个走到最后，说明另一个剩下的也没得匹配了，结束</li>
+</ul>
+</li>
+</ul>
+<p>小知识点：</p>
+<ol>
+<li>sorted</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="nb">sorted</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果传入 <code>key</code>，那么会按照 <code>key(x)</code> 的大小给 <code>x</code> 排序</p>
+<ol start="2">
+<li>json</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-py" data-lang="py"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;restaurants.json&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">r</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Restaurant</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">r</span><span class="p">[</span><span class="s1">&#39;stars&#39;</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="lecture-25---data-examples">Lecture 25   Data Examples
+</h2><p>Lists</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>Operation</th>
+          <th>Desciption</th>
+          <th>Example</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>append()</td>
+          <td>adds one element to a list</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>extend()</td>
+          <td>adds all elements in one list to another list</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>addition &amp; slicing</td>
+          <td><strong>create new lists</strong> containing existing elements</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>list()</td>
+          <td><strong>creates a new list</strong> containing existing elements</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>slice assignment</td>
+          <td>replaces a slice with new values (or remove elements from a list by assigning [] to a slice)</td>
+          <td><code>s[0:0] = t</code>, t is a list, it will replace <code>s[0:0]</code> with t**&rsquo;s elements**</td>
+      </tr>
+      <tr>
+          <td>pop()</td>
+          <td>removes and returns the last element</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>remove()</td>
+          <td>removes the first element equal to the argument</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table></div>
+<p>Objects</p>
+<p>Iterables &amp; Iterators</p>
+<p>Linked Lists</p>
+<p>本节是习题课</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2025-07-24  11:43:00 (&#43;08:00)
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="freeMdoge/freeMdoge.github.io"
+    data-repo-id="R_kgDOPRMDiw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOPRMDi84CtUVD"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    data-loading=""
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2025 freeMdoge
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+<div id="particles-js"></div>
+
+<style>
+     
+    #TableOfContents > ul, ol {
+        ul, ol {
+            display: none;
+        }
+        .open {
+            display: block;
+        }
+    }
+    
+     
+    #particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    }
+
+</style>
+
+
+<script src=https://freeMdoge.github.io/background/particles.min.js></script>
+
+<script>
+    
+
+    function initTocHide() {
+        
+        let toc = document.querySelector(".widget--toc");
+        if (!toc) {
+            return;
+        }
+        
+        window.addEventListener('scroll', function() {
+            
+            let openUl = document.querySelectorAll(".open");
+            if (openUl.length > 0) {
+              openUl.forEach((ul) => {
+                ul.classList.remove("open")
+              })
+            }
+            
+            let currentLi = document.querySelector(".active-class");
+            if (!currentLi) {
+                return
+            }
+            
+            if (currentLi.children.length > 1) {
+                currentLi.children[1].classList.add("open")
+            }
+            
+            let ul = currentLi.parentElement;
+            do {
+                ul.classList.add("open");
+                ul = ul.parentElement.parentElement
+            } while (ul !== undefined && (ul.localName === 'ul' || ul.localName === 'ol'))
+        });
+    }
+    initTocHide()
+    
+    
+
+    particlesJS.load('particles-js', "https://freeMdoge.github.io/background/particlesjs-config.json", function() {
+        console.log('particles.js loaded - callback');
+    });
+</script>
+    </body>
+</html>
