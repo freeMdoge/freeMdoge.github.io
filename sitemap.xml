@@ -2,32 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://freeMdoge.github.io/p/unityflappy-bird-%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/categories/</loc>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/post/</loc>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/tags/</loc>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/tags/unity/</loc>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
+  </url><url>
     <loc>https://freeMdoge.github.io/p/hugo-stack-%E4%B8%BB%E9%A2%98%E9%AD%94%E6%94%B9/</loc>
     <lastmod>2025-07-24T21:32:48+08:00</lastmod>
   </url><url>
-    <loc>https://freeMdoge.github.io/post/</loc>
-    <lastmod>2025-07-25T07:06:27+08:00</lastmod>
-  </url><url>
-    <loc>https://freeMdoge.github.io/categories/</loc>
-    <lastmod>2025-07-25T07:06:27+08:00</lastmod>
-  </url><url>
     <loc>https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2025-07-25T07:06:27+08:00</lastmod>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
   </url><url>
     <loc>https://freeMdoge.github.io/tags/python/</loc>
-    <lastmod>2025-07-25T07:06:27+08:00</lastmod>
-  </url><url>
-    <loc>https://freeMdoge.github.io/tags/</loc>
-    <lastmod>2025-07-25T07:06:27+08:00</lastmod>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
   </url><url>
     <loc>https://freeMdoge.github.io/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2025-07-25T07:06:27+08:00</lastmod>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
   </url><url>
     <loc>https://freeMdoge.github.io/tags/test/</loc>
-    <lastmod>2025-07-25T07:06:27+08:00</lastmod>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
   </url><url>
     <loc>https://freeMdoge.github.io/p/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2/</loc>
-    <lastmod>2025-07-25T07:06:27+08:00</lastmod>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
   </url><url>
     <loc>https://freeMdoge.github.io/page/</loc>
     <lastmod>2025-07-25T07:06:27+08:00</lastmod>
@@ -49,6 +58,9 @@
   </url><url>
     <loc>https://freeMdoge.github.io/search/</loc>
     <lastmod>2025-07-23T12:12:49+08:00</lastmod>
+  </url><url>
+    <loc>https://freeMdoge.github.io/categories/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/</loc>
+    <lastmod>2025-07-25T08:50:59+08:00</lastmod>
   </url><url>
     <loc>https://freeMdoge.github.io/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/</loc>
     <lastmod>2025-07-24T11:14:41+08:00</lastmod>
