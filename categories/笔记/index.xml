@@ -2167,6 +2167,74 @@
 &lt;ul&gt;
 &lt;li&gt;Read-Eval-Print Loop&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;lecture-31---interpreters&#34;&gt;Lecture 31   Interpreters
+&lt;/h2&gt;&lt;p&gt;Special Forms&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In the evaluation of a scheme expression, we need to know what sort of expression it is.&lt;/li&gt;
+&lt;li&gt;Calculator just divided expressions into numbers and call expressions, but in scheme there are some other alternatives as well.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;scheme_eval&lt;/code&gt; function dispatches on expression form:
+&lt;ul&gt;
+&lt;li&gt;Symbols are bound to values in the current environment&lt;/li&gt;
+&lt;li&gt;Self-evaluating expressions are returned.&lt;/li&gt;
+&lt;li&gt;All other legal expressions atr represented as Scheme lists, called &lt;em&gt;combinations&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Quatation&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The quote special form evaluates to the quoted expression, thich is not evaluated&lt;/li&gt;
+&lt;li&gt;The &lt;em&gt;&amp;lt;expression&amp;gt;&lt;/em&gt; itself is the value of the expression&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&#39;&amp;lt;expression&amp;gt;&lt;/code&gt; is shorthand for &lt;code&gt;(quote &amp;lt;expression&amp;gt;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;The scheme_read parser converts shorthand to a combination&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Logical Forms&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Logical forms may only evaluate some sub-expressions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Lambda Expressions&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lambda expressions evaluate to user-defined precedures&lt;/li&gt;
+&lt;li&gt;Frames and Environments
+&lt;ul&gt;
+&lt;li&gt;A frame represents an environment by having a parent frame.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dynamic Scope&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The way in which names are looked up in Scheme and Python is called &lt;em&gt;lexical scope&lt;/em&gt; (or &lt;em&gt;static scope&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lexical scope&lt;/em&gt; : The parent of a frame is the environment in which a precedure was &lt;em&gt;defined&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Dynamic scope&lt;/em&gt; : The parent of a frame is the environment in which a procedure was &lt;em&gt;called&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Interpreting Scheme&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The Structure of an Interpreter&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/TheStructureofanInterpreterLec31.png&#34;
+	width=&#34;1198&#34;
+	height=&#34;726&#34;
+	srcset=&#34;https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/TheStructureofanInterpreterLec31_hu_2bdad97f40abbaac.png 480w, https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/TheStructureofanInterpreterLec31_hu_a5d2e1d743e96967.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;The Structure of an Interpreter - Lec 31&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;396px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;Define Expressions&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Define binds a symbol to a value in the first frame of the current environment&lt;/li&gt;
+&lt;li&gt;Procedure definition is shorthand of define with a lambda expression
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;(define (&amp;lt;name&amp;gt; &amp;lt;formal parameters&amp;gt;) (&amp;lt;body&amp;gt;))&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(define &amp;lt;name&amp;gt; (lambda (&amp;lt;formal parameters&amp;gt;) &amp;lt;body&amp;gt;))&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;To apply a user-defined procedure, create a new frame in which formal parameters are bound to argumant valurs, whose parent is the &lt;em&gt;env&lt;/em&gt; of the procedure&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         

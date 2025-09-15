@@ -10,7 +10,7 @@
 <meta property='og:description' content="CS 61A Fall 2024">
 <meta property='og:url' content='https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/'>
 <meta property='og:site_name' content='freeMdoge'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='Python' /><meta property='article:published_time' content='2025-07-24T11:34:11&#43;08:00'/><meta property='article:modified_time' content='2025-08-21T17:21:18&#43;08:00'/><meta property='og:image' content='https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian2.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='Python' /><meta property='article:published_time' content='2025-07-24T11:34:11&#43;08:00'/><meta property='article:modified_time' content='2025-09-15T15:54:22&#43;08:00'/><meta property='og:image' content='https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian2.png' />
 <meta name="twitter:title" content="CS 61A 笔记">
 <meta name="twitter:description" content="CS 61A Fall 2024"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://freeMdoge.github.io/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian2.png' />
@@ -271,6 +271,7 @@
     <li><a href="#lecture-28---scheme">Lecture 28   Scheme</a></li>
     <li><a href="#lecture-29---scheme-lists">Lecture 29   Scheme Lists</a></li>
     <li><a href="#lecture-30---calculator">Lecture 30   Calculator</a></li>
+    <li><a href="#lecture-31---interpreters">Lecture 31   Interpreters</a></li>
   </ol>
 </nav>
         </div>
@@ -343,14 +344,14 @@
         <div class="article-lastmod">
                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
                 <time>
-                    2025-08-21  17:21:18 (&#43;08:00)
+                    2025-09-15  15:54:22 (&#43;08:00)
                 </time>
             </div>
         
         <div>
             <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
             <time class="article-words">
-                6667 字
+                6932 字
             </time>
         </div>
         
@@ -2522,6 +2523,74 @@
 <ul>
 <li>Read-Eval-Print Loop</li>
 </ul>
+<h2 id="lecture-31---interpreters">Lecture 31   Interpreters
+</h2><p>Special Forms</p>
+<ul>
+<li>In the evaluation of a scheme expression, we need to know what sort of expression it is.</li>
+<li>Calculator just divided expressions into numbers and call expressions, but in scheme there are some other alternatives as well.</li>
+<li>The <code>scheme_eval</code> function dispatches on expression form:
+<ul>
+<li>Symbols are bound to values in the current environment</li>
+<li>Self-evaluating expressions are returned.</li>
+<li>All other legal expressions atr represented as Scheme lists, called <em>combinations</em>.</li>
+</ul>
+</li>
+</ul>
+<p>Quatation</p>
+<ul>
+<li>The quote special form evaluates to the quoted expression, thich is not evaluated</li>
+<li>The <em>&lt;expression&gt;</em> itself is the value of the expression</li>
+<li><code>'&lt;expression&gt;</code> is shorthand for <code>(quote &lt;expression&gt;)</code></li>
+<li>The scheme_read parser converts shorthand to a combination</li>
+</ul>
+<p>Logical Forms</p>
+<ul>
+<li>Logical forms may only evaluate some sub-expressions</li>
+</ul>
+<p>Lambda Expressions</p>
+<ul>
+<li>Lambda expressions evaluate to user-defined precedures</li>
+<li>Frames and Environments
+<ul>
+<li>A frame represents an environment by having a parent frame.</li>
+</ul>
+</li>
+</ul>
+<p>Dynamic Scope</p>
+<ul>
+<li>The way in which names are looked up in Scheme and Python is called <em>lexical scope</em> (or <em>static scope</em>)</li>
+<li><em>Lexical scope</em> : The parent of a frame is the environment in which a precedure was <em>defined</em>.</li>
+<li><em>Dynamic scope</em> : The parent of a frame is the environment in which a procedure was <em>called</em>.</li>
+</ul>
+<p>Interpreting Scheme</p>
+<ul>
+<li>The Structure of an Interpreter</li>
+</ul>
+<p><img src="/p/cs-61a-%E7%AC%94%E8%AE%B0/TheStructureofanInterpreterLec31.png"
+	width="1198"
+	height="726"
+	srcset="/p/cs-61a-%E7%AC%94%E8%AE%B0/TheStructureofanInterpreterLec31_hu_2bdad97f40abbaac.png 480w, /p/cs-61a-%E7%AC%94%E8%AE%B0/TheStructureofanInterpreterLec31_hu_a5d2e1d743e96967.png 1024w"
+	loading="lazy"
+	
+		alt="The Structure of an Interpreter - Lec 31"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="165"
+		data-flex-basis="396px"
+	
+></p>
+<p>Define Expressions</p>
+<ul>
+<li>Define binds a symbol to a value in the first frame of the current environment</li>
+<li>Procedure definition is shorthand of define with a lambda expression
+<ul>
+<li><code>(define (&lt;name&gt; &lt;formal parameters&gt;) (&lt;body&gt;))</code></li>
+<li><code>(define &lt;name&gt; (lambda (&lt;formal parameters&gt;) &lt;body&gt;))</code></li>
+</ul>
+</li>
+<li>To apply a user-defined procedure, create a new frame in which formal parameters are bound to argumant valurs, whose parent is the <em>env</em> of the procedure</li>
+</ul>
 
 </section>
 
@@ -2547,7 +2616,7 @@
 
 
         <span>
-            最后更新于 2025-08-21  17:21:18 (&#43;08:00)
+            最后更新于 2025-09-15  15:54:22 (&#43;08:00)
         </span>
     </section></footer>
 
