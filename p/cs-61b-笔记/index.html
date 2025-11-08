@@ -10,7 +10,7 @@
 <meta property='og:description' content="CS 61B UCB CS61B SP21\nJava Java 基础 控制台输出\n1 System.out.println(); 数组\n创建 1 2 int[] arr1 = new int[10]; int[] arr2 = new int[] {1, 2, 3}; 长度 1 arr1.length 引用类型\n除了 byte, short, int, long, float, double, boolean, char 以外都是引用类型 引用类型存地址，引用类型之间的赋值只会复制地址，不会拷贝指向的实例。传参的时候传进去的也是地址 == 返回地址是否相同，.equals 由类来定义，返回逻辑上两个对象是否相同 实现 equals() 的同时需要实现 hashCode() 访问修饰符\n">
 <meta property='og:url' content='https://freeMdoge.github.io/p/cs-61b-%E7%AC%94%E8%AE%B0/'>
 <meta property='og:site_name' content='freeMdoge'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-08T15:19:21&#43;08:00'/><meta property='article:modified_time' content='2025-11-08T15:50:15&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2025-11-08T15:19:21&#43;08:00'/><meta property='article:modified_time' content='2025-11-08T17:27:40&#43;08:00'/>
 <meta name="twitter:title" content="CS 61B 笔记">
 <meta name="twitter:description" content="CS 61B UCB CS61B SP21\nJava Java 基础 控制台输出\n1 System.out.println(); 数组\n创建 1 2 int[] arr1 = new int[10]; int[] arr2 = new int[] {1, 2, 3}; 长度 1 arr1.length 引用类型\n除了 byte, short, int, long, float, double, boolean, char 以外都是引用类型 引用类型存地址，引用类型之间的赋值只会复制地址，不会拷贝指向的实例。传参的时候传进去的也是地址 == 返回地址是否相同，.equals 由类来定义，返回逻辑上两个对象是否相同 实现 equals() 的同时需要实现 hashCode() 访问修饰符\n">
     <link rel="shortcut icon" href="/favicon.png" />
@@ -264,6 +264,14 @@
 
     <div class="article-details">
     
+    <header class="article-category">
+        
+            <a href="/categories/%E7%AC%94%E8%AE%B0/" style="background-color: #2a9d8f; color: #fff;">
+                笔记
+            </a>
+        
+    </header>
+    
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -296,7 +304,7 @@
         <div class="article-lastmod">
                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
                 <time>
-                    2025-11-08  15:50:15 (&#43;08:00)
+                    2025-11-08  17:27:40 (&#43;08:00)
                 </time>
             </div>
         
@@ -382,7 +390,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testMethod</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="n">assertEquals</span><span class="p">(</span><span class="o">&lt;</span><span class="n">expected</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">actual</span><span class="o">&gt;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="o">&lt;</span><span class="n">expected</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">actual</span><span class="o">&gt;</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">assertTrue</span><span class="p">(</span><span class="s">&#34;A error message&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">condition</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
@@ -424,13 +432,13 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SimpleBuiltInListExample</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">L</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">5</span><span class="p">);</span><span class="w">  </span><span class="n">L</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">10</span><span class="p">);</span><span class="w">   </span><span class="n">L</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">15</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">L</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">L</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">5</span><span class="p">);</span><span class="w">  </span><span class="n">L</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">10</span><span class="p">);</span><span class="w">   </span><span class="n">L</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">15</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">L</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">L2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Utils</span><span class="p">.</span><span class="na">readIntsFromFile</span><span class="p">(</span><span class="err">“</span><span class="n">somedata</span><span class="p">.</span><span class="na">csv</span><span class="err">”</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">L2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Utils</span><span class="p">.</span><span class="na">readIntsFromFile</span><span class="p">(</span><span class="err">“</span><span class="n">somedata</span><span class="p">.</span><span class="na">csv</span><span class="err">”</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -512,14 +520,18 @@
 <ul>
 <li>Java 7 或更早：用接口实现（仍在广泛使用）</li>
 </ul>
-<p><img src="/.md_image/index.assets/JavaHoFs.png"
-	
-	
-	
+<p><img src="/p/cs-61b-%E7%AC%94%E8%AE%B0/JavaHoFs.png"
+	width="1866"
+	height="1049"
+	srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/JavaHoFs_hu_67d5d2b235a01970.png 480w, /p/cs-61b-%E7%AC%94%E8%AE%B0/JavaHoFs_hu_ad90b6010c25b50e.png 1024w"
 	loading="lazy"
 	
 		alt="JavaHoFs"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
 	
 ></p>
 <ul>
@@ -543,15 +555,15 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Java8HoFDemo</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">tenX</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       	</span><span class="k">return</span><span class="w"> </span><span class="n">10</span><span class="o">*</span><span class="n">x</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">10</span><span class="o">*</span><span class="n">x</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">doTwice</span><span class="p">(</span><span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">     	</span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="n">x</span><span class="p">));</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="na">apply</span><span class="p">(</span><span class="n">x</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    	</span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">doTwice</span><span class="p">(</span><span class="n">Java8HoFDemo</span><span class="p">::</span><span class="n">tenX</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">     	</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">result</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">doTwice</span><span class="p">(</span><span class="n">Java8HoFDemo</span><span class="p">::</span><span class="n">tenX</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">result</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -598,7 +610,7 @@
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">MyInterface</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">...</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">defaultMethod</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">...</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
@@ -613,23 +625,31 @@
 </ul>
 </li>
 </ul>
-<p><img src="/.md_image/index.assets/DynamicMethodSelection1.png"
-	
-	
-	
+<p><img src="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection1.png"
+	width="1875"
+	height="1045"
+	srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection1_hu_e96439105291b67b.png 480w, /p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection1_hu_fd4ad89d201447cd.png 1024w"
 	loading="lazy"
 	
 		alt="image-20251107192927787"
 	
 	
-><img src="/.md_image/index.assets/DynamicMethodSelection2.png"
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="430px"
 	
-	
-	
+><img src="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection2.png"
+	width="1200"
+	height="1111"
+	srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection2_hu_94115591dcca43b2.png 480w, /p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection2_hu_2cad5c0cf01cae27.png 1024w"
 	loading="lazy"
 	
 		alt="image-20251107214702872"
 	
+	
+		class="gallery-image" 
+		data-flex-grow="108"
+		data-flex-basis="259px"
 	
 ></p>
 <ul>
@@ -646,10 +666,10 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RotatingSLList</span><span class="o">&lt;</span><span class="n">Blorp</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SLList</span><span class="o">&lt;</span><span class="n">Blorp</span><span class="o">&gt;</span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">rotateRight</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">Blorp</span><span class="w"> </span><span class="n">oldBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">removeLast</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">addFirst</span><span class="p">(</span><span class="n">oldBack</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">rotateRight</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Blorp</span><span class="w"> </span><span class="n">oldBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">removeLast</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">addFirst</span><span class="p">(</span><span class="n">oldBack</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -676,18 +696,18 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VengefulSLList</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SLList</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">private</span><span class="w"> </span><span class="n">SLList</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span><span class="w"> </span><span class="n">deletedItems</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="nf">VengefulSLList</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="kd">super</span><span class="p">();</span><span class="w"> </span><span class="c1">// must come first!</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="n">deletedItems</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SLList</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nd">@Override</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="n">Item</span><span class="w"> </span><span class="nf">removeLast</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    		</span><span class="n">Item</span><span class="w"> </span><span class="n">oldBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">removeLast</span><span class="p">();</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    		</span><span class="n">deletedItems</span><span class="p">.</span><span class="na">addLast</span><span class="p">(</span><span class="n">oldBack</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    		</span><span class="k">return</span><span class="w"> </span><span class="n">oldBack</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">SLList</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span><span class="w"> </span><span class="n">deletedItems</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">VengefulSLList</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">super</span><span class="p">();</span><span class="w"> </span><span class="c1">// must come first!</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">deletedItems</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SLList</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Override</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Item</span><span class="w"> </span><span class="nf">removeLast</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Item</span><span class="w"> </span><span class="n">oldBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">removeLast</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">deletedItems</span><span class="p">.</span><span class="na">addLast</span><span class="p">(</span><span class="n">oldBack</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">oldBack</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -721,6 +741,12 @@
 
     <footer class="article-footer">
     
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+        
+    </section>
+
 
     <section class="article-lastmod">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -732,10 +758,36 @@
 
 
         <span>
-            最后更新于 2025-11-08  15:50:15 (&#43;08:00)
+            最后更新于 2025-11-08  17:27:40 (&#43;08:00)
         </span>
     </section></footer>
 
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+	const mainArticleElement = document.querySelector(".main-article");
+        renderMathInElement(mainArticleElement, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
 
     
 </article>
@@ -743,6 +795,39 @@
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/cs-61a-%E7%AC%94%E8%AE%B0/">
+        
+        
+            <div class="article-image">
+                <img src="/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian2.8140778a4ad169ab7aa7e87277f475bb_hu_32f95a5baabc7ff3.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post CS 61A 笔记"
+                        
+                        data-hash="md5-gUB3ikrRaat6p&#43;hyd/R1uw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">CS 61A 笔记</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
