@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>freeMdoge</copyright>
-        <lastBuildDate>Tue, 30 Jun 2026 20:30:02 +0800</lastBuildDate><atom:link href="https://freeMdoge.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 07 Jul 2026 20:54:09 +0800</lastBuildDate><atom:link href="https://freeMdoge.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>归档</title>
         <link>https://freeMdoge.github.io/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0800</pubDate>
@@ -24,6 +24,7 @@
         <description>&lt;p&gt;一个大菜鸡，左拼右凑糊出的博客（&lt;/p&gt;
 &lt;p&gt;博客框架：Hugo 0.148.1&lt;/p&gt;
 &lt;p&gt;主题：hugo-theme-stack-3.30.0&lt;/p&gt;
+&lt;p&gt;部分图标来自 Lucide&lt;/p&gt;
 </description>
         </item>
         <item>

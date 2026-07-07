@@ -7,6 +7,1017 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>freeMdoge</copyright><atom:link href="https://freeMdoge.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>CS188 笔记</title>
+        <link>https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Tue, 07 Jul 2026 16:18:49 +0800</pubDate>
+        
+        <guid>https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/</guid>
+        <description>&lt;p&gt;project 与 note 参考：Fall 2025&lt;/p&gt;
+&lt;p&gt;vedio：Fall 2018&lt;/p&gt;
+&lt;p&gt;写 project 1,2,3 的时候没有具体记录，后面两个 project 只简单写了下思路，没有贴上代码。&lt;/p&gt;
+&lt;h2 id=&#34;搜索&#34;&gt;搜索
+&lt;/h2&gt;&lt;p&gt;智能体是一个有目标的实体，它通过感知环境并采取行动来最大化预期效用。智能体的设计依赖于环境特征，不同环境需要不同的策略。&lt;/p&gt;
+&lt;p&gt;搜索问题由状态空间、动作集合、转移模型、动作代价、初始状态、目标测试组成。关于状态，世界状态包含所有信息，而搜索状态只保留规划所需的必要信息，以节省空间。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;树搜索的基本框架&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;ol&gt;
+&lt;li&gt;从初始状态开始，把节点加入 &lt;code&gt;frontier&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;每次取出一个节点，检查是否为目标状态。&lt;/li&gt;
+&lt;li&gt;如果不是，就展开它的所有子节点并加入 frontier 。&lt;/li&gt;
+&lt;li&gt;重复直到找到目标或者 frontier 为空。&lt;/li&gt;
+&lt;/ol&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;搜索&lt;/th&gt;
+          &lt;th&gt;frontier&lt;/th&gt;
+          &lt;th&gt;完备性&lt;/th&gt;
+          &lt;th&gt;最优解&lt;/th&gt;
+          &lt;th&gt;时间复杂度&lt;/th&gt;
+          &lt;th&gt;空间复杂度&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;DFS&lt;/td&gt;
+          &lt;td&gt;栈&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;$O(b^m)$&lt;/td&gt;
+          &lt;td&gt;$O(bm)$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;BFS&lt;/td&gt;
+          &lt;td&gt;队列&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;边权相等时有&lt;/td&gt;
+          &lt;td&gt;$O(b^s)$&lt;/td&gt;
+          &lt;td&gt;$O(b^s)$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;UCS&lt;/td&gt;
+          &lt;td&gt;优先队列&lt;/td&gt;
+          &lt;td&gt;是&lt;/td&gt;
+          &lt;td&gt;边权非负时有&lt;/td&gt;
+          &lt;td&gt;$O(b^{\frac{C∗} ε})$&lt;/td&gt;
+          &lt;td&gt;$O(b^{\frac{C∗} ε})$&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;贪心搜索&lt;/td&gt;
+          &lt;td&gt;优先队列&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;否&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;A*&lt;/td&gt;
+          &lt;td&gt;优先队列&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;（ $b$ （分支因子）：每次从 frontier 中弹出元素后加入 frontier 的元素数量。 $m$ ：最大深度。 $s$ ：最浅解的深度）&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;搜索&lt;/th&gt;
+          &lt;th&gt;函数&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;UCS&lt;/td&gt;
+          &lt;td&gt;$g(n)$ 到当前节点的真实代价&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;贪心搜索&lt;/td&gt;
+          &lt;td&gt;$h(n)$ 到目标的估计代价&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;A*&lt;/td&gt;
+          &lt;td&gt;$f(n)=g(n)+h(n)$&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Local Search：&lt;em&gt;TODO&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;博弈&#34;&gt;博弈
+&lt;/h2&gt;&lt;p&gt;在对抗环境中，对手的行为不可完全预测，你的行动会影响对手的行动，不能再用“找到一条最优路径”这种方式解决问题，需要一种能在每个状态下给出最佳行动的策略，所以需要对抗搜索。（本节主要讨论确定性零和博弈）&lt;/p&gt;
+&lt;p&gt;在对抗搜索中，把我方和对方的每个 agent 的一次行动的结果作为一个状态。 &lt;code&gt;Minimax&lt;/code&gt; 假设对手总是最优地行动（选择对我方最不利的动作），计算不同状态在最坏条件下能获得的最高收益，以此判断在我方节点处 agent 应该采取的动作。 &lt;code&gt;Minimax&lt;/code&gt; 认为终止状态的价值已知，对于非终止状态，若轮到我方，则取所有子节点中最大的价值（最大化节点）；若轮到对手，则取所有子节点中最小的价值（最小化节点，认为对手总是最优地行动）。在博弈树中，最大化节点和最小化节点层次交替。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Minimax 更新&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;如果所在状态为终止状态，直接返回终止状态的效应值&lt;/p&gt;
+&lt;p&gt;如果控制当前状态的 agent 是 MAX（我方），返回后继状态效应值的最大值&lt;/p&gt;
+&lt;p&gt;如果控制当前状态的 agent 是 MIN （对手），返回后继状态效应值的最小值&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;&lt;img src=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260401150238.png&#34;
+	width=&#34;1875&#34;
+	height=&#34;761&#34;
+	srcset=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260401150238_hu_9c402eb7355b2436.png 480w, https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260401150238_hu_fc425c5aaec90259.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;246&#34;
+		data-flex-basis=&#34;591px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Minimax&lt;/code&gt; 实际上是当前在我方行动状态时，对博弈树进行后续遍历，自底向上计算，直到获得当前状态的后继状态的价值，然后得到前往最大后继状态的动作。实际实现时需要指定遍历的深度，将遍历时最深的状态作为终止状态。终止状态的效应值由 &lt;code&gt;评估函数&lt;/code&gt; 获取。最常见的评估函数设计是线性组合特征，即
+&lt;/p&gt;
+$$
+Eval(s)=w_1f_1(s)+w_2f_2(s)+\cdots+w_nf_n(s)
+$$&lt;p&gt;
+其中 $f$ 即 &lt;code&gt;feature&lt;/code&gt; ，状态的某个特征， $w$ 是该特征的权重。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Minimax&lt;/code&gt; 的时间复杂度可以达到 $O(b^m)$ ，它的一种优化方案是 &lt;code&gt;alpha-beta 剪枝&lt;/code&gt; 。例如，在某个最小化节点 n 处，如果 n 的某个后继节点 n&amp;rsquo; 的价值已经小于已知的从 n 到 minimax 根节点路径上状态价值的最大值（alpha），那么不需要再继续处理节点 n 了，因为节点 n 处取完最小后，价值一定小于等于 n&amp;rsquo; 的价值，即小于 alpha ，在后续最大化节点处会被直接忽略。&lt;em&gt;TODO：alpha-beta pruning 的解释&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260401154133.png&#34;
+	width=&#34;1875&#34;
+	height=&#34;775&#34;
+	srcset=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260401154133_hu_c1e8e045414e811f.png 480w, https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260401154133_hu_c117741fd59594e1.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;241&#34;
+		data-flex-basis=&#34;580px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Minimax&lt;/code&gt; 假设对手总是最优地行动，常常会在对手不一定最优或存在随机性时过于悲观。此时应该考虑使用 &lt;code&gt;Expectimax&lt;/code&gt; 。 &lt;code&gt;Expectimax&lt;/code&gt; 引入机会节点，即在对方行动的状态中，取所有对方动作产生的后继状态的价值的均值为机会节点的价值。
+&lt;/p&gt;
+$$
+V(s)=\sum_{s&#39;\in successors(s)} p(s&#39;|s)\cdot V(s&#39;)
+$$&lt;p&gt;
+因为总是考虑所有后继状态的价值，所以 &lt;code&gt;Expectimax&lt;/code&gt; 不能使用 alpha-beta 剪枝。实际上博弈树的层次可能更复杂，比如同时由最大化节点、最小化节点和机会节点组成。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260403141513.png&#34;
+	width=&#34;1368&#34;
+	height=&#34;600&#34;
+	srcset=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260403141513_hu_2a1ee703e2dde679.png 480w, https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260403141513_hu_6950042853b7947c.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;228&#34;
+		data-flex-basis=&#34;547px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;TODO：General Games &amp;amp; Monte Carlo Tree Search&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;马尔可夫决策过程&#34;&gt;马尔可夫决策过程
+&lt;/h2&gt;&lt;p&gt;MDP 描述在一个非确定性环境中，agent 如何通过选择动作来最大化长期奖励。一个 Markov Decision Process（MDP）由以下元素定义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;状态集合 $S$：和传统搜索问题一样，是对环境的描述。&lt;/li&gt;
+&lt;li&gt;动作集合 $A$：每个状态下可采取的动作。&lt;/li&gt;
+&lt;li&gt;起始状态，可能还有 终止状态。&lt;/li&gt;
+&lt;li&gt;折扣因子 $γ$（可选）：用于控制未来奖励的重要性。&lt;/li&gt;
+&lt;li&gt;转移函数 $T(s,a,s′)$：执行动作 a 后从状态 s 到达状态 s′ 的概率。&lt;/li&gt;
+&lt;li&gt;奖励函数 $R(s,a,s′)$：执行动作 a 从 s 到 s′ 所获得的即时奖励。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;MDP 可以像搜索树一样展开，由于执行动作后的下一状态是不确定的（概率由转移函数给出），引入 Q-state 作为“从状态 s 执行动作 a 后但尚未确定结果的中间节点”。&lt;/p&gt;
+&lt;p&gt;时间步是描述 MDP 中 agent 行动的一种刻度，agent 在不同的时间步执行动作，不同时间步中的状态、动作和奖励用下标表示。agent 对未来收益的估算会按 $\gamma^t$ 递减，即
+&lt;/p&gt;
+$$
+U = R_0+\gamma R_1 + \gamma^2R_2 + \cdots
+$$&lt;p&gt;
+MDP 满足马尔可夫性，即未来只依赖当前状态和动作，与过去无关。&lt;/p&gt;
+&lt;p&gt;求解一个 MDP，就是要找到一个最优策略 $\pi*$ ，使得到达目标状态时期望总奖励最大。一个策略给出不同状态下 agent 应该采取的动作（即状态到动作的映射）。MDP 的求解基于 Bellman 方程，假设 $V^* (s)$ 表示从状态 s 出发的最大未来期望效用，则 Bellman 方程为：
+&lt;/p&gt;
+$$
+V^* (s) = \max_a\sum_{s&#39;} T(s,a,s&#39;)[R(s,a,s&#39;)+\gamma V^* (s&#39;)]
+$$&lt;p&gt;
+意思是，从状态 s 出发的最大未来期望效用，就是从状态 s ，对于每一个动作，都有可能到达一系列后继状态，根据转移函数取这些后继状态效用加上转移奖励（即 $R(s,a,s&#39;)+\gamma V^* (s&#39;)$ ）的均值，得到采取该动作后能获得的最大未来期望效用，取所有动作对应的最大未来期望效用中的最大值。后继状态的效用 $\gamma V^* (s&#39;)$ 是一种递归表达。&lt;/p&gt;
+&lt;p&gt;用 $Q^*(s,a)$ 表示从状态 s 出发，采取 a 动作后能获得的最大未来期望效用（又称 Q-value），Bellman 方程还可以这样表示：
+&lt;/p&gt;
+$$
+\begin{aligned}
+&amp;Q^* (s,a)=\sum_{s&#39;}T(s,a,s&#39;)[R(s,a,s&#39;)+\gamma V^* (s&#39;)]  \newline
+&amp;V^* (s)=\max_a Q^* (s,a)
+\end{aligned}
+$$&lt;p&gt;
+根据 Bellman 方程，可以得到一种动态规划求 MDP 中最优状态值的算法 &lt;code&gt;Value Iteration&lt;/code&gt; （价值迭代）。用 $V_k(s)$ 表示在有限步数 k 内，从状态 s 可获得的最大期望效用，价值迭代的更新规则为：
+&lt;/p&gt;
+$$
+V_{k+1}(S)\leftarrow \max_a\sum_{s&#39;}T(s,a,s&#39;)[R(s,a,s&#39;)+\gamma V_k&#39;(s&#39;)]
+$$&lt;p&gt;
+&lt;code&gt;Value Iteration&lt;/code&gt; 的过程即使用上述更新规则对所有状态的价值进行更新，每一次更新 k 加一，可以证明这种迭代更新最后会收敛，最终得到的就是每个状态的最大期望效用 $V^*(s)$ 。&lt;em&gt;TODO：Value Iteration 初始值的设置 和 收敛的解释&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;得到最优状态值 $V^*(s)$ 之后，可以通过策略提取来提取最优策略：
+&lt;/p&gt;
+$$
+\pi^*(s)=\text{argmax}_aQ^*(s,a)=\text{argmax}_a\sum_{s&#39;}T(s,a,s&#39;)[R(s,a,s&#39;)+\gamma V^*(s&#39;)]
+$$&lt;p&gt;
+即对于每个状态，分别计算每个动作的 Q 值，然后选择使 Q 值最大的动作。与 &lt;code&gt;Value Iteration&lt;/code&gt; 类似的 &lt;code&gt;Q-Value Iteration&lt;/code&gt; 直接计算出 Q 值，策略提取时只需要一步 argmax 即可， &lt;code&gt;Q-Value Iteration&lt;/code&gt; 的过程是：
+&lt;/p&gt;
+$$
+Q_{k+1}(s,a)\leftarrow \sum_{s&#39;}T(s,a,s&#39;)[R(s,a,s&#39;)+\gamma \max_{a&#39;}Q_{k+1}(s&#39;,a&#39;)]
+$$&lt;p&gt;
+&lt;code&gt;Value Iteration&lt;/code&gt; 每次迭代对每个状态枚举所有动作，再枚举所有可能的后继状态，最坏情况下每个状态的后继状态都可能是所有状态中的任何一个状态，即单次迭代的时间复杂度为 $O(|S|\cdot|A|\cdot|S|)$ 。 &lt;code&gt;Q-Value Iteration&lt;/code&gt; 对于每个 $(s,a)$ ，枚举所有的后继状态，然后取每个后继状态的最优动作，单次迭代的时间复杂度为 $O(|S|\cdot|A|)$&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;TODO：Policy Iteration&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;强化学习&#34;&gt;强化学习
+&lt;/h2&gt;&lt;p&gt;马尔可夫决策过程通过价值迭代和策略迭代来求解最优策略，这属于离线规划，即在&lt;strong&gt;已知&lt;/strong&gt;转移函数和奖励函数的情况下预先计算最优动作。强化学习（&lt;code&gt;Reinforcement Learning&lt;/code&gt;）则属于在线规划，agent 在&lt;strong&gt;未知&lt;/strong&gt;奖励和转移的环境中，通过探索（&lt;code&gt;exploraion&lt;/code&gt;）来收集样本，再利用这些样本学习策略。agent 每次探索得到的样本为一个四元组 $(s,a,s&#39;,r)$ ，把一系列探索直到终止状态得到的样本称为 &lt;code&gt;episode&lt;/code&gt; ，agent 通常需要经历多个回合来积累足够数据。&lt;/p&gt;
+&lt;p&gt;强化学习可以分成模型驱动学习 &lt;code&gt;model-based learning&lt;/code&gt; 和无模型学习 &lt;code&gt;model-free learning&lt;/code&gt; 两类。模型驱动学习利用样本估计转移函数和奖励函数，再用传统方法求解 MDP；无模型学习直接估计状态价值或 Q 值，不显式构建奖励和转移模型。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;model-based learning&lt;/code&gt; 的方式是，记录每次探索的样本中，每个状态转移到的下一个状态的次数和，通过归一化得到概率分布（即转移函数），每次状态转移的奖励作为奖励函数。根据大数定理，得到的 $T$ 和 $R$ 会收敛于真实的函数，在合适时机停止训练，利用当前的 T 和 R 进行价值迭代或策略迭代，得到所需的策略。&lt;/p&gt;
+&lt;p&gt;模型驱动学习的优点是简单直观，缺点是需要维护所有 $(s,a,s&#39;)$ 的计数，内存开销大。为了避免维护大量计数，可以使用 &lt;code&gt;model-free learning&lt;/code&gt; 。它分为被动强化学习和主动强化学习：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;被动强化学习：并不能求出最优策略，而是需要给定策略，然后学习状态价值。如直接评估 &lt;code&gt;Direct Evaluation&lt;/code&gt; 、时序差分学习 &lt;code&gt;Temporal Difference Learning&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;主动强化学习：通过反馈不断更新策略，如 &lt;code&gt;Q-Learning&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;直接评估的方法是，给定策略 $\pi$ ，反复运行多个回合，统计每个状态的总效用与访问次数。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Direct Evaluation&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;ul&gt;
+&lt;li&gt;每一次探索，按照策略 $\pi$ ，从一个起始状态开始运行，直到达到最终状态，得到一个 &lt;code&gt;episode&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在每个 &lt;code&gt;episode&lt;/code&gt; 中，记录经过的每个状态出现时的总回报，即从该状态到终止状态的转移奖励之和，把这些回报加到该状态到“总效用”统计中。并记录每个状态的访问次数。&lt;/li&gt;
+&lt;li&gt;最终，对于每一个状态，在策略 $\pi$ 下的平均效用即总效用除以访问次数。&lt;/li&gt;
+&lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;直接评估的缺点是必须要等到一个完整回合结束，才能更新，它的路径可能非常长，每一步的随机性都会累积，波动剧烈，没有利用状态转移的结构信息，收敛速度慢。缓解这个问题的办法是使用下一种算法，即 &lt;code&gt;Temporal Difference Learning&lt;/code&gt; （&lt;code&gt;TD&lt;/code&gt;）， &lt;code&gt;TD&lt;/code&gt; 每走一步就根据下一个状态的估计值进行更新，只关注当前即时奖励和下一时刻，方差更低。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Temporal Difference Learning&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;ul&gt;
+&lt;li&gt;初始化所有状态 $V_{\pi}(s)=0$&lt;/li&gt;
+&lt;li&gt;在每个时间步，agent 执行行动 $\pi(s)$ 得到一个样本
+$$ sample = R(s,\pi(s),s&#39;)+\gamma V^{\pi}(s&#39;) $$&lt;/li&gt;
+&lt;li&gt;使用指数加权平均更新价值，其中 $\alpha$ 是学习率（&lt;code&gt;learning rate&lt;/code&gt;）
+$$ V^{\pi}_k(s)\leftarrow (1-\alpha) V^{\pi}_{k-1}(s)+\alpha \cdot sample $$&lt;/li&gt;
+&lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;指数加权平均的策略可以使早期更不准确的旧样本随时间指数衰减，越新的样本权重越大。&lt;/p&gt;
+&lt;p&gt;直接评估和时序差分都只能根据已知策略计算状态价值，然后通过 &lt;code&gt;model-based learning&lt;/code&gt; 来得到最优策略。于是诞生了 &lt;code&gt;Q-Learning&lt;/code&gt; ，直接学习 Q-Values ，无需知道 T 和 R， &lt;code&gt;Q-Learning&lt;/code&gt; 的过程和 &lt;code&gt;TD&lt;/code&gt; 类似：&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Q-Learning&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;ul&gt;
+&lt;li&gt;初始化所有 Q-State： $Q(s,a)=0$&lt;/li&gt;
+&lt;li&gt;在每个时间步，agent 按照一定的探索策略选择得到一个样本
+$$ sample = R(s,a,s&#39;)+\gamma \max_{a&#39;}Q(s&#39;,a&#39;) $$&lt;/li&gt;
+&lt;li&gt;使用指数加权平均更新价值
+$$ Q(s,a) \leftarrow (1-\alpha)Q(s,a)+\alpha\cdot sample $$&lt;/li&gt;
+&lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;两种常见的探索策略分别是 &lt;code&gt;ε-greedy&lt;/code&gt; 和 &lt;code&gt;Exploration Functions&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ε-greedy&lt;/code&gt; 定义一个概率 $ε$ ，以概率 $ε$ 进行随机探索，以 $1-ε$ 的概率取当前已知 Q-Value 最大动作进行利用。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;TODO：探索函数&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Q-Learning&lt;/code&gt; 需要存储所有 Q-Value ，在状态数量多时开销较大。 &lt;code&gt;Approximate Q-Learning&lt;/code&gt; 则使用特征向量表示状态，通过线性函数近似 Q-Value，类似对弈搜索中所使用的，可以用状态特征来近似计算状态效用
+&lt;/p&gt;
+$$
+\begin{aligned}
+V(s)&amp;=w_1f_1(s)+w_2f_2(s)+\cdots \\\\
+Q(s,a)&amp;=w_1f_1(s,a)+w_2f_2(s,a)+\cdots
+\end{aligned}
+$$&lt;p&gt;
+然后定义误差 &lt;code&gt;difference&lt;/code&gt;
+&lt;/p&gt;
+$$
+difference=[R(s,a,s&#39;)+\gamma \max_a&#39;Q(s&#39;,a&#39;)]-Q(s,a)
+$$&lt;p&gt;
+近似 Q-Learning 使用以下的更新规则更新权重，进而通过新权重计算 Q-Value
+&lt;/p&gt;
+$$
+w_i\leftarrow w_i+\alpha\cdot difference \cdot f_i(s,a)
+$$&lt;p&gt;
+&lt;em&gt;TODO：对 Approximate Q-Learning 的解释&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&#34;贝叶斯网络&#34;&gt;贝叶斯网络
+&lt;/h2&gt;&lt;p&gt;本节主要研究变量之间关系的不确定性，需要先了解条件独立的概念。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Conditionally independent&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;即“在已知 C 的情况下，A 与 B 相互独立”，记作
+&lt;/p&gt;
+$$ A\perp\!\!\!\perp B \mid C $$&lt;p&gt;
+数学定义和推论为
+&lt;/p&gt;
+$$ \begin{gathered} P(A,B\mid C) = P(A \mid C)P(B \mid C) \\\\ P(A\mid B,C) = P(A\mid C)  \end{gathered} $$&lt;p&gt;
+（ $P(A,B)$  就是  $P(AB)$ ）&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;概率推理用于处理不确定事件的关系，即给定所有变量的联合分布律，利用观测到的部分信息，计算目标变量的概率分布。也就是计算在已知证据变量 $e$ 的情况下，目标变量 $Q$ 发生的概率 $P(Q_1\dots Q_m\mid e_1\dots e_n)$ 。既不是证据变量也不是目标变量的是无关变量 $H$ （在已知的联合分布律中但不在要求的联合分布律中）&lt;/p&gt;
+&lt;p&gt;一种概率推理的方式是枚举推理（&lt;code&gt;Inference by Enumeration&lt;/code&gt;）&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Inference by Enumeration&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;ul&gt;
+&lt;li&gt;已知一个完整的联合分布律，从联合分布律中得到证据变量为给定值的事件组合的概率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260421134824.png&#34;
+	width=&#34;1368&#34;
+	height=&#34;844&#34;
+	srcset=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260421134824_hu_1cf93f2b77d2436e.png 480w, https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260421134824_hu_63df152e5b4eeb36.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;162&#34;
+		data-flex-basis=&#34;389px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将得到的概率对无关变量进行求和（边缘化），消除事件组合中的无关变量
+$$ P(Q_i,e_i) = \sum_{H_i}P(Q_i,H_i,e_i) $$&lt;/li&gt;
+&lt;li&gt;对结果进行归一化，使其成为概率分布
+$$ P(Q_i\mid e_i) = \dfrac{P(Q_i,e_i)}{P(e_i)} = \dfrac{P(Q_i,e_i)}{\sum_{Q_i}P(Q_i,e_i)} $$
+（上面式子中的 $Q,H$ 是随机变量，而 $e$ 是具体的数值）&lt;/li&gt;
+&lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;枚举推理需要存储一个完整的联合分布律，在变量较多时会变得很巨大（ $n$ 个变量，每个变量定义域有 $d$ 个值，则联合分布律有 $d^n$ 项）。&lt;/p&gt;
+&lt;p&gt;贝叶斯网络 &lt;code&gt;Bayesian Network&lt;/code&gt; 避免了存储巨大分布律的问题。贝叶斯网络是一个有向无环图，每个节点对应一个随机变量，每个节点存储一个条件概率表（&lt;code&gt;CPT&lt;/code&gt;），CPT 存储的是 $P(X\mid A_1\dots A_n)$  ，其中 $X$ 是该节点对应的随机变量， $A_i$ 是该节点的父节点对应的随机变量。节点之间的边代表着节点之间的条件独立性。&lt;/p&gt;
+&lt;p&gt;贝叶斯网络假设在给定一个节点的&lt;strong&gt;所有&lt;/strong&gt;父节点的值的情况下，这个节点与它所有非后代节点独立（局部马尔可夫性），也就是说，对于贝叶斯网络中的任意节点 $Y$ ，有
+&lt;/p&gt;
+$$
+Y \perp\!\!\!\perp {NonDescendants(Y)} \mid Parents(Y)
+$$&lt;p&gt;
+将贝叶斯网络中的节点按拓扑序排序，写出的&lt;strong&gt;所有变量&lt;/strong&gt;的联合分布律为
+&lt;/p&gt;
+$$
+P(X_1,X_2,\dots,X_n) = P(X_1)P(X_2\mid X_1)\dots P(X_n\mid X_1,\dots,X_{n-1})
+$$&lt;p&gt;
+由于是拓扑排序，所以 $Parents(X_i)\in \{X_1,\dots,X_{i-1}\}$  ，再利用上面提到的局部马尔可夫性，可以把 $\{X_1,\dots,X_{i-1}\}$ 中不是 $X_i$ 父节点的点给去掉，即 $P(X_i\mid X_1,\dots,X_{i-1})=P(X_i\mid Parents(X_i))$ ，进而联合分布律可以写成
+&lt;/p&gt;
+$$
+P(X_1,X_2,\dots,X_n)=\prod P(X_i\mid Parents(X_i))
+$$&lt;p&gt;
+由此可以看到，贝叶斯网络通过多个较小的 CPT 即可表示整个联合分布。假设一个节点的父节点最多有 $k$ 个，那么贝叶斯网络只需要 $O(nd^k)$ 项来存储，在 k 比较小时明显由于枚举推理的指数级复杂度。&lt;/p&gt;
+&lt;p&gt;贝叶斯网络只是基于一系列条件独立性假设而建立的模型，并不能够完全代表现实变化或变量间的实际联系。但这种模型仍然是有意义的，它可以高效地解决概率推理问题，产生对问题较为精确的认识。同时，虽然贝叶斯网络中节点之间的边不完全代表变量之间的因果关系，但是贝叶斯网络几乎就是为了处理因果关系而产生的工具。&lt;/p&gt;
+&lt;p&gt;在处理贝叶斯网络时，经常会希望知道两个节点之间的独立性，此时 &lt;code&gt;D-Separation&lt;/code&gt; 是一种较为直观的在图中确定独立性的方式。&lt;/p&gt;
+&lt;p&gt;结构 1：Casual Chains
+&lt;/p&gt;
+$$
+X\rightarrow Y\rightarrow Z
+$$&lt;p&gt;
+在 Y 未知时，X 和 Z 是相关的。在 Y 已知时，X 和 Z 是独立的。即 $X \perp\!\!\!\perp Z \mid Y$ 。&lt;/p&gt;
+&lt;p&gt;结构 2：Common Cause
+&lt;/p&gt;
+$$
+X \leftarrow Y \rightarrow Z
+$$&lt;p&gt;
+在 Y 未知时，X 和 Z 是相关的。在 Y 已知时，X 和 Z 是独立的。即 $X \perp\!\!\!\perp Z \mid Y$ 。&lt;/p&gt;
+&lt;p&gt;结构 3：Common Effect
+&lt;/p&gt;
+$$
+X \rightarrow Y \leftarrow Z
+$$&lt;p&gt;
+在 Y 未知时，X 和 Z 是&lt;strong&gt;独立的&lt;/strong&gt;。在 Y 已知时，X 和 Z 是相关的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实际上，上述“相关”并非真正的相关，如果给定一个特殊的 CPT，可能可以使 $P(X,Z\mid Y)=P(X\mid Y)P(Z\mid Y)$ 仍然成立。所谓的“相关”是说无法保证在任何 CPT 中 X 和 Z 都是独立的。也就是说， &lt;code&gt;D-separation&lt;/code&gt; 只能发现在这个贝叶斯网络中一定成立的独立性，发现不了一些通过特殊 CPT 构造出来的独立性。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;在局部马尔可夫性假设下可以证明上述一系列 &lt;code&gt;D-separation&lt;/code&gt; 结构的性质，此处略（使用数学方式证明独立或者使用反例证明不独立）。值得注意的是，Casual Chains 结构看起来好像就是局部马尔可夫性，为什么还需要重述一遍，甚至还要证明？为了说明这个问题，观察下面的一个贝叶斯网络：
+&lt;/p&gt;
+$$
+X \rightarrow Y \rightarrow Z \leftarrow W
+$$&lt;p&gt;
+根据局部马尔可夫性，只有同时给定 Y 和 W 时，才能确定 X 和 Z 是独立的。但是应用 Casual Chains 结构，只需要给定 Y 时，即可确定 X 和 Z 是独立的。&lt;/p&gt;
+&lt;p&gt;利用 &lt;code&gt;D-separation&lt;/code&gt; 确定两个节点之间的独立性，可以使用下面的算法：&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;D-separation&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;ul&gt;
+&lt;li&gt;给定已知变量 $Z_1,\dots,Z_k$ ，在图中标记上它们&lt;/li&gt;
+&lt;li&gt;枚举所有 X 和 Y 之间的无向路径&lt;/li&gt;
+&lt;li&gt;对于每一条路径：
+&lt;ul&gt;
+&lt;li&gt;将路径分解为一系列三元组（由三个点组成的一段）&lt;/li&gt;
+&lt;li&gt;如果所有三元组都是活跃的，那么这个路径就是活跃的
+&lt;ul&gt;
+&lt;li&gt;如果三元组是 Casual Chains 或者 Common Cause，则中间的点未被观测时活跃&lt;/li&gt;
+&lt;li&gt;如果是 Common Effect，则中间的点被观测时活跃&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;如果没有一条路径是活跃的，说明在给定 $Z_1,\dots,Z_k$ 的条件下 X 和 Y 是独立的&lt;/li&gt;
+&lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;有了贝叶斯网络，下一步就要考虑如何利用贝叶斯网络进行概率推理。下面引入 &lt;code&gt;Variable Elimination&lt;/code&gt; 变量消去。它的主要操作是逐步消去无关变量，得到目标变量和证据变量的概率分布。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Variable Elimination&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;将证据变量的值 $e_i$ 代入 CPT 转化为初始 &lt;code&gt;factor&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;确定消去无关变量的顺序&lt;/p&gt;
+&lt;p&gt;对于每一个要消去的无关变量 $H_i$ ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Join：找到所有包含 $H_i$ 的因子，把它们全都乘在一起，产生一个大的临时因子&lt;/li&gt;
+&lt;li&gt;Sum out：对上一步生成的临时因子，对 $H_i$ 进行求和&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后所有因子只剩下目标变量，再一起做一次乘法，得到关于目标变量的单一因子&lt;/p&gt;
+&lt;p&gt;然后进行归一化，得到目标概率&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;一种看待枚举推理和变量消去的方式是，对于枚举推理：
+&lt;/p&gt;
+$$
+P(T \mid +e) = \alpha \sum_s \sum_c P(T)P(s \mid T)P(c \mid T)P(+e \mid c,s)
+$$&lt;p&gt;
+而变量消去是：
+&lt;/p&gt;
+$$
+P(T \mid +e) = \alpha P(T) \sum_s  P(s \mid T) \sum_c P(c \mid T)P(+e \mid c,s)
+$$&lt;p&gt;
+（ $\alpha$ 表示归一化 ）&lt;/p&gt;
+&lt;p&gt;概率推理还有一种方式是近似推理，通过观察一些样本并计数来近似估计要求的概率。下面介绍四种采样方法。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Prior Sampling&lt;/code&gt; 先验采样根据贝叶斯网络的 CPT 逐步生成样本。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Prior Sampling&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;假设现在在变量 $X$，已经生成了的变量为 $y_i$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生成一个随机数 $r$，如果 $r&lt;P(X\mid y_i)$  ，返回 True，否则 False（假设值域只有 True 或 False）&lt;/li&gt;
+&lt;li&gt;继续对 $X$ 的后继节点进行上述操作，直到得到所有变量的一组值，即一个样本 $[x_1,\dots,x_n]$&lt;/li&gt;
+&lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;这种方法的缺点是可能需要枚举大量数据才能分析到不太可能的情况，并且此时绝大多数样本都是没用的。&lt;/p&gt;
+&lt;p&gt;一种改进方案是 &lt;code&gt;Rejection Sampling&lt;/code&gt; 拒绝采样。这种方式仍然会生成大量样本，但它在生成过程中直接丢弃与证据不符的样本，减少无效样本的生成时间。&lt;/p&gt;
+&lt;p&gt;更高效的方案是 &lt;code&gt;Likelihood Weighting&lt;/code&gt; 似然加权。这种方式在采样时指定证据变量为给定值，然后通过在最终样本中乘上证据变量取这个值时的概率来修正所得概率，避免了产生大量无关样本。也就是对于 $P(z_1,\dots,z_p,e_1,\dots,e_m)$ 只通过采样的过程求出 $P(z_1,\dots,z_p)$ ，通过直接指定并加权的方式得到 $P(e_1,\dots,e_m)$&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Likelihood Weighting&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;对每个样本设置一个权重 $w$ ，初始化为 1&lt;/p&gt;
+&lt;p&gt;对于非证据变量，使用之前的采样方式（按概率生成随机数）&lt;/p&gt;
+&lt;p&gt;如果是证据变量 &lt;code&gt;E_i&lt;/code&gt; ，直接指定该变量为给定值 $e$ ，然后权重乘上 $P(e|前面已经采样的值)$&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;还有一种采样方式是 &lt;code&gt;Gibbs Sampling&lt;/code&gt; 吉布斯采样。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Gibbs Sampling&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;初始化所有变量为一个随机值，不考虑 CPT&lt;/p&gt;
+&lt;p&gt;每一次迭代：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;随机挑选一个变量&lt;/li&gt;
+&lt;li&gt;根据其他变量的当前值，重新采样该变量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每次迭代都生成一个新的样本，样本会逐渐收敛到目标分布&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;关于似然加权的证明和吉布斯采样的细节在本课程内不展开&lt;/p&gt;
+&lt;h2 id=&#34;决策网络和-vpi&#34;&gt;决策网络和 VPI
+&lt;/h2&gt;&lt;p&gt;运用贝叶斯网络可以获得事件的概率，在现实中，往往还需要考虑事件的效用，以及知道概率和效用之后如何进行决策，同时还需要考虑获取信息的代价。&lt;/p&gt;
+&lt;p&gt;理性 agent 应该遵从最大化效用原则。偏好 &lt;code&gt;preference&lt;/code&gt; 是 agent 选择动作的倾向。只有理性的偏好才能保证 agent 遵从最大化效用原则，也就是说这个偏好可以用效用函数来描述，不理性的偏好可能会出现矛盾或者循环。假设 $A&gt;B$ 表示相对 B 更加偏好 A， $A\sim B$ 表示两者偏好程度相同，对于一个偏好，下面五个公理保证偏好是理性的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可排序性：对于两个结果，一定某一个优于另一个，或者两者优先度相同&lt;/li&gt;
+&lt;li&gt;传递性：如果 $A&gt;B$ 且 $B&gt;C$ ，则 $A&gt;C$&lt;/li&gt;
+&lt;li&gt;连续性：如果 $A&gt;B&gt;C$ ，则存在一个依概率选择 A 或 C 的事件和 B 的偏好程度相同&lt;/li&gt;
+&lt;li&gt;可替代性：如果 $A\sim B$ ，则可以用 A 替代 B&lt;/li&gt;
+&lt;li&gt;单调性：如果 $A&gt;B$ ，则选择 A 为结果概率大的事件优于选择 B 为结果概率大的事件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;决策网络由机会节点、行动节点和效用节点组成，它的目标是选择能产生最大期望效用 &lt;code&gt;MEU&lt;/code&gt; 的行动。其中，机会节点就是贝叶斯网络中的节点，行动节点是 agent 可以采取的一个行动，效用节点由一些行动行动节点和机会节点产生效用。&lt;/p&gt;
+&lt;p&gt;考虑下面的决策网络：
+&lt;/p&gt;
+$$
+[Umbrella] \rightarrow \text{&lt;}U\text{&gt;} \leftarrow (Weather) \leftarrow (Forecast)
+$$&lt;p&gt;
+Umbralla 是行动节点，agent 可以选择带伞或不带伞。Weather 和 Forecast 是机会节点，它们构成了一个简单的贝叶斯网络。U 是效用节点，在确定 Umbralla 和 Weather 后，效用节点会给出一个效用。如果给定了 Forecast  的值作为证据变量，那么可以在 Weather 和 Forecast 构成的贝叶斯中进行概率推理，得到下雨的概率，进而确定带伞或者不带伞带来的效用。更具体的，决策网络计算最大期望效用的方式是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在贝叶斯网络中根据已知证据 $e$ 进行概率推理，得到与效用节点相连的机会节点 $X$ 的概率分布&lt;/li&gt;
+&lt;li&gt;对于每一个可能的行动 $a$ ，结合概率分布和效用节点对于不同输入给出的效用值计算这个行动的期望效用
+$$
+EU(a\mid e) = \sum_{x}P(x\mid e)\cdot U(a,x)
+$$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上面提到，决策网络中的概率推理依赖于已知信息。为了衡量信息的价值，引入完美信息的价值 &lt;code&gt;VPI&lt;/code&gt; ，它衡量的是观察到新证据后，最大期望效用的提升量。通过比较 VPI 与获取信息的成本，决定是否值得收集额外信息。&lt;/p&gt;
+&lt;p&gt;假设已知的信息为 $e$ ，对于观察的新证据 $E&#39;$ ，VPI 为
+&lt;/p&gt;
+$$
+VPI(E&#39;|e) = MEU(e,E&#39;) - MEU(e) = \sum_{e&#39;}P(e&#39;\mid e)MEU(e,e&#39;) - MEU(e)
+$$&lt;p&gt;
+VPI 有一些性质：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非负性：获取信息只会增加或保持 MEU，不会降低 &lt;em&gt;TODO：为什么&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;非加性：多个证据的 VPI 不等于它们单独 VPI 之和&lt;/li&gt;
+&lt;li&gt;顺序独立性：观察多个证据的总效用提升和观察顺序无关&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;隐马尔可夫模型&#34;&gt;隐马尔可夫模型
+&lt;/h2&gt;&lt;p&gt;马尔可夫模型的本质是一个无限长的链式贝叶斯网络，它被用来描述随时间变化的随机变量，假设每天的天气状态 $W_i$ 可以用下面的贝叶斯网络描述：
+&lt;/p&gt;
+$$
+W_0\rightarrow W_1\rightarrow W_2\rightarrow W_3 \rightarrow \dots
+$$&lt;p&gt;
+为了确定每天的天气情况 $W_i$ ，需要已知初始分布 $P(W_0)$ 和转移模型 $P(W_{i+1}\mid W_i)$ 。这个转移模型是具有马尔可夫性质的，所以整个序列的概率可以通过初始分布和转移模型来构造
+&lt;/p&gt;
+$$
+P(W_0,\dots,W_n) = P(W_0) \prod P(W_{i+1} \mid W_i)
+$$&lt;p&gt;
+马尔可夫模型还有一个假设是转移模型是固定的，不随时间变化。这样只需要存储初始分布和转移模型两张表。&lt;/p&gt;
+&lt;p&gt;想要计算某一天的天气情况，如果使用初始分布和转移模型直接计算总概率分布，再进行边缘化，是非常低效的。在马尔可夫模型中计算一个变量在某个时间的值可以使用 &lt;code&gt;Mini-Forward&lt;/code&gt; 算法。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Mini-Forward&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;&lt;/p&gt;
+$$ P(W_{i+1}) = \sum_{w_i}P(W_{i+1}\mid w_i) P(w_i) $$&lt;p&gt;
+根据前一个时间的概率可以计算下一个时间的概率，这样迭代着去求&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;随着不断迭代，分布会收敛到一个稳定的值。&lt;/p&gt;
+&lt;p&gt;隐马尔可夫模型相较普通模型引入了观测变量 $F$ ，它假设状态 $W$ 是隐藏的，但是可以通过观测到的 $F$ 更新对状态的信念。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260423212844.png&#34;
+	width=&#34;1875&#34;
+	height=&#34;558&#34;
+	srcset=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260423212844_hu_4432ef9dc3c5cb36.png 480w, https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260423212844_hu_b35439ff1a291383.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;336&#34;
+		data-flex-basis=&#34;806px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;在这个模型中具有如下条件独立关系：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;观测独立性：当前观测只依赖于当前状态
+$$
+F_i \perp\!\!\!\perp W_{0:(i-1)},F_{1:(i-1)}\mid W_i 
+$$&lt;/li&gt;
+&lt;li&gt;状态独立性：当前状态只依赖于前一个状态
+$$
+W_i \perp\!\!\!\perp W_{0:(i-2)},F_{1:(i-1)}\mid W_{i-1}
+$$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;准确来说，不是“只依赖于”，而是给定状态后，与之前的状态和观测独立。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;同时假设转移模型 $P(W_{i+1}\mid W_i)$ 和传感器模型 $P(F_i\mid W_i)$ 都是固定的。这样只需要存储三张概率表。&lt;/p&gt;
+&lt;p&gt;同时定义如下信念分布：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;结合所有证据后的信念
+$$
+B(W_i)=P(W_i\mid f_{1:i})
+$$&lt;/li&gt;
+&lt;li&gt;不含当前证据的预测分布
+$$
+B&#39;(W_i)=P(W_i\mid f_{1:(i-1)})
+$$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在隐马尔可夫模型中求一个状态的值，可以使用 &lt;code&gt;Forward Algorithm&lt;/code&gt; 前向算法&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Forward Algorithm&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;时间推进：根据转移模型预测下一步状态分布
+&lt;/p&gt;
+$$ B&#39;(W_{i+1}) = \sum_{w_i}P(W_{i+1}\mid w_i)\cdot B(w_i) $$&lt;p&gt;
+观测更新：根据观测修正预测分布
+&lt;/p&gt;
+$$ B(W_{i+1}) \propto P(f_{i+1}\mid W_{i+1})\cdot B&#39;(W_{i+1}) $$&lt;ul&gt;
+&lt;li&gt;即计算乘积后归一化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;重复以上两步，不断迭代&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;其中，第二步公式的推导如下：
+&lt;/p&gt;
+$$
+B(W_{i+1}) = P(W_{i+1}\mid f_{1:(i+1)}) = \dfrac{P(f_{i+1}\mid W_{i+1},f_{i:i})\cdot P(W_{i+1}\mid f_{1:i})}{P(f_{i+1}\mid f_{1:i})}
+$$&lt;p&gt;
+因为可以归一化，所以不用管分母。将前面提到的条件独立性 $P(f_{i+1}\mid W_{i+1}, f_{1:i}) = P(f_{i+1}\mid W_{i+1})$ 和对 $B&#39;$ 的定义带入，就是第二步的公式。&lt;/p&gt;
+&lt;p&gt;前向算法是在解决某个时间点的状态分布概率，接下来的 &lt;code&gt;Viterbi Algorithm&lt;/code&gt; 是为了找到整个隐藏状态序列中最可能的一条路径。它使用动态规划的思想。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Viterbi Algorithm&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;假设 $m_i[x_i] = \max_{x_{1:t-1}}P(x_{1:t},e_{1:t})$ 表示到达 $x_i$ 的最佳路径概率，则递推关系为
+&lt;/p&gt;
+$$ m_t[x_t] = P(e_t\mid x_t)\cdot max_{x_{t-1}}(P(x_t\mid x_{t-1})\cdot m_{t-1}[x_{t-1}]) $$&lt;p&gt;
+同时记录 $x_i$ 的前驱 $a_t[x_t]$
+&lt;/p&gt;
+$$ a_t[x_t]=\arg \max_{x_{t-1}}P(x_t\mid x_{t-1}) \cdot m_{t-1}[x_{t-1}] $$&lt;p&gt;
+到达最后一个时间点后，选择最后一个时间点中概率最大的一个隐藏状态，依据它的前驱回溯找到整条路径&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;可以证明这个问题具有最优子结构性质。&lt;em&gt;TODO：更详细的说明&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;在 HMM 中，前向算法等精确推理的计算量随状态空间的大小急剧增加。可以采用类似贝叶斯网络中采样的方式来获取近似的概率分布，HMM 中的一种近似算法为 &lt;code&gt;Particle Filtering&lt;/code&gt; 粒子滤波。粒子滤波通过模拟一组粒子（样本）在状态图中的运动来近似概率分布，通过粒子在不同状态的数量比例来近似信念分布。&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Particle Filtering&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;生成一组粒子（随机生成/均匀分布/根据已知的初始分布）&lt;/p&gt;
+&lt;p&gt;类似 &lt;code&gt;Forward Algorithm&lt;/code&gt; ，每个时间点进行两个操作：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;时间推进：每个粒子根据转移模型更新到下一个状态（从转移模型重新采样一个粒子）&lt;/li&gt;
+&lt;li&gt;观测更新：
+&lt;ul&gt;
+&lt;li&gt;对于每个粒子，根据观测模型 $P(e\mid x)$ 计算权重
+&lt;ul&gt;
+&lt;li&gt;如果所有粒子的权重之和为 0，直接重新初始化粒子&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;对所有粒子的权重归一化&lt;/li&gt;
+&lt;li&gt;根据权重分布重新抽取粒子集合（权重低的可能不会被抽到，权重高的可能被重复抽到）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;h2 id=&#34;project-4--tracking&#34;&gt;Project 4  tracking
+&lt;/h2&gt;&lt;h3 id=&#34;q1&#34;&gt;Q1
+&lt;/h3&gt;&lt;p&gt;为题目所给的贝叶斯网络在项目代码中构建一个 BayesNet 。agent 位置的值域直接枚举所有位置 $(x,y)$ ，距离的值域是从 0 到 最大距离+&lt;code&gt;MAX_NOISE&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;q2&#34;&gt;Q2
+&lt;/h3&gt;&lt;p&gt;完成 Variable Elimination 所需的 Join 操作。将输入 factors 的概率相乘得到输出 factor 的概率，并且输出的 factor 中，非条件变量就是所有输入 factors 的非条件变量，条件变量是输入 factors 中剩余的变量。&lt;/p&gt;
+&lt;p&gt;描述中有提到
+&lt;/p&gt;
+$$
+\text{joinFactors}(P(V\mid W), P(X\mid Y), P(X)) = P(V, X, Z\mid W, Y)
+$$&lt;p&gt;
+说明这个函数并非适用于所有的概率分布相乘，仅用于贝叶斯网络中的 Variable Elimination。&lt;/p&gt;
+&lt;h3 id=&#34;q3&#34;&gt;Q3
+&lt;/h3&gt;&lt;p&gt;完成 Variable Elimination 所需的 Sum out 操作。创建一个不包含证据变量的 factor，枚举这个 factor 中的（非证据）变量赋值 $a$ ，对于每一组非证据变量的赋值 $a$ ，枚举证据变量的值构成原 factor 的变量赋值 $a&#39;$ 回到原 factor 中求概率，对于每个 $a$ ，把枚举出的 $a&#39;$ 求出的概率求和，就是新 factor 中赋值 $a$ 的概率&lt;/p&gt;
+&lt;h3 id=&#34;q4&#34;&gt;Q4
+&lt;/h3&gt;&lt;p&gt;实现 Variable Elimination。&lt;/p&gt;
+&lt;p&gt;根据贝叶斯网络中的变量和给出的目标变量和证据变量，计算出无关变量，同时获取证据变量赋值之后的 &lt;code&gt;factor&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;然后按照 &lt;code&gt;eliminationOrder&lt;/code&gt; 来枚举无关变量，利用 &lt;code&gt;joinFactorsByVariable&lt;/code&gt; 来合并含有这个变量的 &lt;code&gt;factor&lt;/code&gt; ，然后进行消去，将消去后的变量加回目前未处理的 &lt;code&gt;factors&lt;/code&gt; 中。如果合并之后的 &lt;code&gt;factor&lt;/code&gt; 的非条件变量只有这个无关变量，那么不进行消去直接处理下一个变量。&lt;/p&gt;
+&lt;p&gt;所有无关变量都消去了之后，直接用 &lt;code&gt;joinFactors&lt;/code&gt; 合并所有剩下的 &lt;code&gt;factors&lt;/code&gt; ，归一化得到结果。&lt;/p&gt;
+&lt;h3 id=&#34;q5&#34;&gt;Q5
+&lt;/h3&gt;&lt;p&gt;考虑时间流逝，之前的变量消去不太能应对了，于是接下来使用 HMM 的前向算法和粒子滤波。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;DiscreteDistribution&lt;/code&gt; 类是 &lt;code&gt;dict&lt;/code&gt; 的派生类，本质上是一个 &lt;code&gt;{事件: 概率}&lt;/code&gt; 的一个字典&lt;/p&gt;
+&lt;p&gt;Q5a 好像没有 autograding，可以 &lt;code&gt;py -m doctest inference.py&lt;/code&gt; 来运行函数里的 &lt;code&gt;doctest&lt;/code&gt; 测试&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;normalize&lt;/code&gt; 就是把字典中所有的值求和，再每个值除以这个和。使用 for 时注意应该枚举每一个键值对，然后通过 &lt;code&gt;self[k] = v&lt;/code&gt; 来修改值，不要直接枚举 &lt;code&gt;self.values()&lt;/code&gt; ，因为值 （&lt;code&gt;int&lt;/code&gt;）是 &lt;code&gt;mutable&lt;/code&gt; 的，枚举时得到的实际上是一个新对象。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sample&lt;/code&gt; 就是枚举一个 $[0,1)$ 的随机数，如果字典中前 k 个值的和刚好大于随机数，就返回第 k 个值对应的键&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;getObservationProb&lt;/code&gt; 计算在具体的 Pacman 和 ghost 位置下产生某种观测的概率，这里的观测值是 Pacman 和 ghost 之间的观测（即有噪声的）距离。也就是获取传感器模型。本质上就是把坐标计算成距离，然后带入已有的另一种形式的传感器模型函数计算出结果。题目中说的特殊情况的意思是，只有 ghost 在 jail 时，观测为 None，此时概率应该为 1，而对于 ghost 在 jail 但是观测不为 None，或者观测为 None 但 ghost 不在 jail 的情况，得到的概率都是 0。&lt;/p&gt;
+&lt;h3 id=&#34;q6&#34;&gt;Q6
+&lt;/h3&gt;&lt;p&gt;设 ghost 所在的位置为隐藏状态，观测到的 Pacman 和 ghost 之间的距离为观测变量。本题就是使用 &lt;code&gt;Forward Algorithm&lt;/code&gt; 来预测给定观测变量后，ghost 所在位置的信念分布。但是本题不考虑每一次迭代中的时间推进操作，只进行观测更新。即
+&lt;/p&gt;
+$$
+B(ghostPos_{i+1}) \propto P(obs_{i+1}\mid ghostPos_{i+1})\cdot B(ghostPos_{i})
+$$&lt;p&gt;
+隐藏状态 ghost 位置的取值可以是所有 &lt;code&gt;allPostions&lt;/code&gt; 中的位置，所以要枚举每一个位置，更新这个位置的信念分布。&lt;/p&gt;
+&lt;h3 id=&#34;q7&#34;&gt;Q7
+&lt;/h3&gt;&lt;p&gt;本题是实现 &lt;code&gt;Forward Algorithm&lt;/code&gt; 中每一次迭代时的时间推进操作（本题不会进行观测更新操作）。通过 &lt;code&gt;getPositionDistribution&lt;/code&gt; 得到 ghost 从旧位置到达某一个位置的概率（转移模型），更新时间流逝后对 ghost 位置的信念分布，即
+&lt;/p&gt;
+$$
+B(NewPos) = \sum_{oldPos}P(NewPos \mid oldPos)\cdot B(oldPos)
+$$&lt;p&gt;
+枚举所有 oldPos，获取从这个旧位置出发 ghost 到达所有位置的概率分布，然后枚举新位置，将概率累加到新位置的信念分布中。&lt;/p&gt;
+&lt;p&gt;本题的 &lt;code&gt;getPositionDistribution&lt;/code&gt; 和上一题的 &lt;code&gt;getObservationProb&lt;/code&gt; 都是 agent 已知的，即先验知识。&lt;/p&gt;
+&lt;h3 id=&#34;q8&#34;&gt;Q8
+&lt;/h3&gt;&lt;p&gt;将 q6 和 q7 的实现合起来，完成完整的 &lt;code&gt;Forward Algorithm&lt;/code&gt;（这部分不需要手动写代码， &lt;code&gt;livingGhostPositionDistributions&lt;/code&gt; 里存的直接就是进行过前向算法迭代后的信念分布）。然后选择信念分布最大的点作为每个 ghost 的位置，计算出能向最近的 ghost 尽可能靠近的动作。枚举 ghost 位置和 action 进行计算即可。&lt;/p&gt;
+&lt;h3 id=&#34;q9&#34;&gt;Q9
+&lt;/h3&gt;&lt;p&gt;完成粒子滤波所需要的基础函数。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;initializeUniformly&lt;/code&gt; 需要在 &lt;code&gt;ParicleFilter&lt;/code&gt; 对象给出的 &lt;code&gt;legalPositions&lt;/code&gt; 上均匀放上 &lt;code&gt;numParticles&lt;/code&gt; 个粒子。如果位置数量比粒子数量少，那么每个位置至少会分到 &lt;code&gt;numParticles // len(legalPositions)&lt;/code&gt; 个粒子。如果位置数量比粒子数量多（或者说完成上面的分配后还剩余了粒子），那么每个位置分到的粒子数量 $x&lt;1$，遍历每个位置，记录已经遍历了的位置的 $x$ 之和，每当 $x$ 取整之后的数值比前一次多了 1，就在这个位置放置一个粒子。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;getBeliefDistribution&lt;/code&gt; 统计同一个位置的粒子数量，并由此计算每个粒子的信念分布。具体做法就是把每个粒子和它的数量放入一个 &lt;code&gt;DiscreteDistribution&lt;/code&gt; 中，然后归一化。&lt;/p&gt;
+&lt;h3 id=&#34;q10&#34;&gt;Q10
+&lt;/h3&gt;&lt;p&gt;完成粒子滤波的观测更新步骤。&lt;/p&gt;
+&lt;p&gt;计算每个粒子的权重，注意可能有的粒子是完全一样的，干脆就把它们的权重相加，当成一个粒子，这样不会影响后续重采样得到的结果。然后归一化。然后根据调用 &lt;code&gt;DiscreteDistribution&lt;/code&gt; 对象的 &lt;code&gt;sample&lt;/code&gt; 函数来重采样。注意求粒子权重的时候还需要做一下特殊情况的判断。&lt;/p&gt;
+&lt;h3 id=&#34;q11&#34;&gt;Q11
+&lt;/h3&gt;&lt;p&gt;完成粒子滤波的时间推进步骤。&lt;/p&gt;
+&lt;p&gt;对于每个粒子，根据转移模型（即 &lt;code&gt;getPositionDistribution&lt;/code&gt; ）获取这个粒子下一时间的信念分布，然后从这个分布中采样一个新的粒子替换原来的粒子。&lt;/p&gt;
+&lt;h2 id=&#34;机器学习&#34;&gt;机器学习
+&lt;/h2&gt;&lt;p&gt;考虑一个邮件分类器，可以将邮件分类为正常邮件和垃圾邮件。可以使用 &lt;code&gt;Naive Bayes Classifier&lt;/code&gt; 朴素贝叶斯分类器来建模。假设将邮件中某些单词是否出现作为特征向量，那么可以通过给定这些向量 $F$ 后结果 $Y$（这个邮件的标签）出现的概率 $P(Y=y\mid F_1=f_1,\dots ,F_n=f_n)$ 中概率最大的 y 来判断邮件的标签。由于这个向量分布过于的大，所以考虑使用贝叶斯网络对 $Y$ 和 $F$ 建模，如下图。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260504132921.png&#34;
+	width=&#34;900&#34;
+	height=&#34;754&#34;
+	srcset=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260504132921_hu_7a7b3d7962ec1a09.png 480w, https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260504132921_hu_5deafbc965db8bd2.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;119&#34;
+		data-flex-basis=&#34;286px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这样利用贝叶斯网络求概率，可以得到如下的标签判断方法：
+&lt;/p&gt;
+$$
+\begin{aligned}
+prediction(f_1,\cdots,f_n) &amp;= \arg\max_{y_i} P(Y=y_i\mid F_1=f_1, \dots, F_n=f_n)\\
+&amp;= \arg\max_{y_i} P(Y=y_i, F_1=f_1, \dots, F_n=f_n) 
+&amp;(是否归一化不影响大小关系)\\
+&amp;= \arg\max_{y_i} P(Y=y_i) \prod^n_{i=1}P(F_i=f_i\mid Y=y_i) &amp;(贝叶斯网络的假设)
+\end{aligned}
+$$&lt;p&gt;
+注意把问题这样建模是一种很强的假设，所以被称为 &amp;ldquo;Naive&amp;rdquo; ，但是它大大减小了推理规模，在实践中也比较有效。&lt;/p&gt;
+&lt;p&gt;接下来要考虑怎么从训练集中求出 CPT，也就是 $P(F_i=f_i\mid Y=y_i)$ 。这里使用的是最大似然估计 &lt;code&gt;MLE&lt;/code&gt; 的方式，简单来说，假设要估计的参数 $\theta = P(F_i=f_i\mid Y=y_i)$ ，在给定 $Y$ 的情况下，每封邮件中单词 $F_i$ 是否出现服从两点分布，于是 $L(\theta)=\prod \theta ^{f_i} (1-\theta) ^ {1-f_i}$ ，取对数求导后令导数为零，得到 $\theta$ 发现就是单词 $F_i$ 出现的频率。也就是说，$P_{MLE}(X)=\dfrac{count(x)}{N}$ （ $count(x)$ 是结果 x 出现的实际次数，N 是样本总数）&lt;/p&gt;
+&lt;p&gt;训练集中可能出现，一个可能在正常邮件中出现的单词，在训练集中却只在垃圾邮件里出现过，此时最大似然估计会将这个单词在正常邮件中出现的概率估计为 0，这是过拟合。引入 &lt;code&gt;Laplace smoothing&lt;/code&gt; 来解决这个问题，假设在实验开始前，每种可能的结局已经预先出现了 $k$ 次，也就是说，假设一个特征可能出现的不同种类总数为 $|X|$ ，则
+&lt;/p&gt;
+$$
+P_{LAP,k(x)} = \dfrac{count(x)+k}{N+k|X|}
+$$&lt;p&gt;
+或者也可以通过监测模型验证集的准确率来避免过拟合，当验证集的准确率下降时停止训练。&lt;/p&gt;
+&lt;p&gt;另一种解决分类问题的方法是使用 &lt;code&gt;linear classifiers&lt;/code&gt; 线性分类器 。将一个样本的特征向量与一个权重向量点乘（线性组合，即加权平均），得到一个 &lt;code&gt;activation&lt;/code&gt; ，通过这个结果的正负，对样本进行分类。
+&lt;/p&gt;
+$$
+\text{activation}_w(x) = h_{\bf w}(x) = \sum_i w_if_i(x) = \bf w\cdot f(x)
+$$&lt;p&gt;
+这在几何上可以看作判断特征向量 $\bf{f(x)}$ 和权重向量 $\bf w$ 的方向是否相近。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260504152034.png&#34;
+	width=&#34;1367&#34;
+	height=&#34;763&#34;
+	srcset=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260504152034_hu_34fe2a2257155a68.png 480w, https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260504152034_hu_a8dde403c5f231f0.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;179&#34;
+		data-flex-basis=&#34;429px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;垂直于 $\bf w$ 的蓝色虚线是判断的分解线，是一个超平面。&lt;/p&gt;
+&lt;p&gt;线性分类器的一种简单实现是感知机 &lt;code&gt;perceptron&lt;/code&gt; ，它是一个二元分类器，同时也可以扩展到更多类的分类器。下面的算法根据训练集中样本的特征向量，获得一组权重向量&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;Perceptrion Algorithm&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;初始化 $w=0$&lt;/p&gt;
+&lt;p&gt;对于每一个样本，设具有特征向量 $f(x)$ 和真实标签 $y^*\in \{-1,+1\}$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;利用现有 $w$ 来尝试分类这个样本，假设结果是 $y$&lt;/li&gt;
+&lt;li&gt;如果 $y=y^*$ ，就继续。如果 $y\ne y^*$ ，就更新权重向量：$w\leftarrow w+y^*f(x)$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果遍历时每个样本都没有进行过权重更新，就退出。否则，重新回到遍历样本的步骤&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;p&gt;其中，这种更新权重向量 $w\leftarrow w+y^*f(x)$ 的意义在于，更新后 $w$ 产生的 $h_{\bf w}(x)$ 会向着真实标签变化（即 $y^*&gt;0$ 时，$h_{\bf w}(x)$ 会增大），同时 $w$ 不同项的变化幅度取决于 $f(x)$ 的不同项（即 $f(x)$ 中较大的项产生的影响更明显，$w$ 的变化幅度也更大）。几何上来看就是让 $w$ 向 $f(x)$ 方向变化了一下。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260504153737.png&#34;
+	width=&#34;1363&#34;
+	height=&#34;814&#34;
+	srcset=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260504153737_hu_43a8d71257fa6d7b.png 480w, https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260504153737_hu_94ceefb390d0a253.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;167&#34;
+		data-flex-basis=&#34;401px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;实际上，分界的那个超平面并非总是经过原点，但是上面提到的方法只能求出经过原点的超平面。解决方法是加入一个偏置 &lt;code&gt;bias&lt;/code&gt; ，使超平面由原来的 $\bf w\cdot f(x) \rm=0$ 变成 $\bf w\cdot f(x) \rm+b=0$ ，从而离开原点。具体的方式是在 $f(x)$ 增加一维，并且这一项始终为 1，同时 $w$ 也额外增加一项，通过这个额外的权重来设置 $b$ （这样就不需要为 $b$ 设计新的算法了，可以直接用上面的算法）。&lt;/p&gt;
+&lt;p&gt;可以将一个感知机扩展到多类感知机，后者对于每一个类都设置一个权重函数，利用每个类的权重函数，分别计算出每个类的结果，最大的那个就是最终的分类去向。同时更新权重的时候，如果出现了错误预测，则对真实标签对应的权重进行 $w_{y^*}\leftarrow w_{y^*}+f(x)$ ，错误预测的那个类的权重进行 $w_y\leftarrow w_y-f(x)$ 。&lt;/p&gt;
+&lt;p&gt;感知机模型存在一定的问题。比如如果数据不是分散的，也就是两类数据混在一起了，计算权重的时候可能得到的权重会不断振荡；或者结果最终停在了一个比较极限、刚好把两部分分开的位置，但是由离某些数据点过近（停早了）。&lt;/p&gt;
+&lt;p&gt;为了解决这些问题，考虑一种新的算法 &lt;code&gt;Logistic Regression&lt;/code&gt; 逻辑回归。将感知机中所用到的内积 $z = w\cdot f(x)$ 转换成概率（&lt;code&gt;sigmoid&lt;/code&gt;）
+&lt;/p&gt;
+$$
+\phi(z)=\dfrac 1 {1+e^{-z}}
+$$&lt;p&gt;
+图像是这样的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260510193017.png&#34;
+	width=&#34;633&#34;
+	height=&#34;789&#34;
+	srcset=&#34;https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260510193017_hu_aba0cfd1efb7fbe4.png 480w, https://freeMdoge.github.io/p/cs188-%E7%AC%94%E8%AE%B0/Pastedimage20260510193017_hu_655d91bc0856d705.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;80&#34;
+		data-flex-basis=&#34;192px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此时可以用最大似然估计来得到权重
+&lt;/p&gt;
+$$
+\max_w ll(w) = \max_w \sum_i\log P(y^{(i)}\mid x^{(i)};w)
+$$&lt;p&gt;
+其中
+&lt;/p&gt;
+$$
+\begin{aligned}
+P(y^{(i)} &amp;= +1\mid x^{(i)};w) = \dfrac 1 {1+e^{-w\cdot f(x^{(i)})}}\\\\
+P(y^{(i)} &amp;= -1\mid x^{(i)};w) = 1 - \dfrac 1 {1+e^{-w\cdot f(x^{(i)})}}
+\end{aligned}
+$$&lt;p&gt;
+这样的函数很难通过令导数为零解出使似然函数值最大的权重，所以这里采用梯度上升/梯度下降（&lt;code&gt;Gradient Ascent&lt;/code&gt; 和 &lt;code&gt;Gradient Descreasing&lt;/code&gt;）
+&lt;/p&gt;
+$$
+w\leftarrow w + \alpha * \nabla_wg(w)
+$$&lt;p&gt;
+其中 $g$ 是要最优化的函数，$\alpha$ 是学习率，类似步长。如果不总是遍历所有的数据点之后再更新权重（批量梯度上升），而是每次访问数据点时更新权重，就是随机梯度上升。也可以把这两种结合起来，每次并行处理一批数据点，然后更新权重，继续处理下一批。&lt;/p&gt;
+&lt;p&gt;如果是多类的情况，先机选每个类的点乘 $z_i=w_yf(x)$ ，然后用以下的函数来得到数据可能是某个类的概率 （&lt;code&gt;softmax&lt;/code&gt;）
+&lt;/p&gt;
+$$
+P(y^{(i)} \mid x^{(i)};w) = \dfrac{e^{z_i}}{\sum_ze^z} = \dfrac {e^{w_{y(i)}\cdot f(x^{(i)})}}{\sum_ye^{w_y\cdot f(x^{(i)})}}
+$$&lt;p&gt;
+在上面的讨论中，经常提到从样本 $\bf{x}$ 中得到样本的特征向量 $\bf{f(x)}$ 。以往人们会采用手动写代码的方式从不同角度提取出特征，是否有方法来自动完成这个过程呢？接下来介绍通过神经网络 &lt;code&gt;Neural networks&lt;/code&gt; 来让模型自己学习特征向量。&lt;/p&gt;
+&lt;p&gt;神经网络中的每层的每个节点称为神经元，在一个神经元上，利用输入的值和权重，点乘后利用非线性函数处理，得到输出，传给下一个神经元
+&lt;/p&gt;
+$$
+z_i^{(k)}=g(\sum W_{i,j}^{(k-1, k)}z_j^{(k-1)})
+$$&lt;p&gt;
+由输入的样本经过神经网络得到样本特征值，最后一层利用逻辑回归等方式得到样本属于每种类别的概率。&lt;/p&gt;
+&lt;p&gt;非线性函数的意义在于，如果只使用线性函数，那么整个神经网络也只能得到一个线性的函数。常用的非线性函数有 &lt;code&gt;Sigmoid Function&lt;/code&gt;， &lt;code&gt;Hyperbolic Tangent&lt;/code&gt;， &lt;code&gt;Rectified Linear Unit(ReLU)&lt;/code&gt; 等。&lt;/p&gt;
+&lt;p&gt;训练神经网络的方式仍然是最大似然估计和梯度上升
+&lt;/p&gt;
+$$
+\max_w ll(w) = \max_w \sum_i\log P(y^{(i)}\mid x^{(i)};w)
+$$&lt;p&gt;
+实际上，如果神经网络足够大，它可以以任意精度近似一个连续函数。但是过大的神经网络也可能导致过拟合。&lt;/p&gt;
+&lt;h2 id=&#34;project-5-machine-learning&#34;&gt;Project 5 machine learning
+&lt;/h2&gt;&lt;p&gt;装环境我是先 conda 创建虚拟环境，然后装 CPU 版本的 pytorch，pytorch 中自带了 numpy，然后只装 matplotlib 就行了。最开始我直接在 project 0 装的环境上装 pytorch 会出报错：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;OSError: [WinError 127] 找不到指定的程序。 Error loading &amp;ldquo;D:\Miniforge\envs\cs188\Lib\site-packages\torch\lib\shm.dll&amp;rdquo; or one of its dependencies.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;q1-1&#34;&gt;Q1
+&lt;/h3&gt;&lt;p&gt;使用 PyTorch 实现一个 Preceptron 的初始化和训练。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;tensor&lt;/code&gt; 的一个属性 &lt;code&gt;shape&lt;/code&gt; 表示张量的形状，它的值是一个列表，列表元素个数与张量的维度相等，每一个元素值表示张量在此维度的元素个数。（维度从第 0 维开始数）&lt;/li&gt;
+&lt;li&gt;注意权重向量应该是二维张量 &lt;code&gt;(1, dimensions)&lt;/code&gt; 而不是一维张量。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DataLoader&lt;/code&gt; 返回一个 iterable &lt;code&gt;dataloader&lt;/code&gt; ，&lt;code&gt;dataloader&lt;/code&gt; 中的每个 &lt;code&gt;batch&lt;/code&gt; 中保存的样本会会比 &lt;code&gt;dataset&lt;/code&gt; 中每个样本多一维（多的这一维表示 &lt;code&gt;batch&lt;/code&gt; 会同时存 &lt;code&gt;batch_size&lt;/code&gt; 个样本）
+&lt;ul&gt;
+&lt;li&gt;在这一题里 &lt;code&gt;batch[&#39;x&#39;]&lt;/code&gt; 的形状是 &lt;code&gt;[1, dimensions]&lt;/code&gt; ，前面多了一个维度，即第 0 维，大小为 1，表示这个 batch 里只有一个样本（即 &lt;code&gt;batch_size=1&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tensordot(a, b, dims)&lt;/code&gt; 会将 a 的最后 dims 个维度和 b 的前 dims 个维度点乘求和。
+&lt;ul&gt;
+&lt;li&gt;比如 dims = 1，可以简单看作把 a 的每一行和 b 的每一列相乘求和，dims = 2 可以看做把 a 的某个面和 b 的某个面相乘求和。&lt;/li&gt;
+&lt;li&gt;比如 A 是 (M, J, K) ，B 是 (J, K, P) ，那么 &lt;code&gt;tensordot(A, B, dims=2)&lt;/code&gt; 就是从 A 的第 0 维中取出 (J, K) 大小的第 i 个矩阵，再从 B 的第 2 维中取出 (J, K) 大小的第 j 个矩阵，然后对应位置相乘，放到结果的 (i, j)，结果矩阵大小是 (M, P) 的。&lt;/li&gt;
+&lt;li&gt;如果 &lt;code&gt;dims&lt;/code&gt; 是列表的元组，则表示指定 a 中的哪些维度和 b 中的哪些维度，比如 &lt;code&gt;dims=([1, 0], [0, 1])&lt;/code&gt; 就是取 $a_{i,j}$ 和 $b_{j,i}$ 相乘再求和，也就是求 $a\times b$ 的对角线元素之和，也就是相乘后的迹。&lt;/li&gt;
+&lt;li&gt;本题就保留 &lt;code&gt;dims=2&lt;/code&gt; 即可，因为 &lt;code&gt;self.w&lt;/code&gt; 和 &lt;code&gt;x&lt;/code&gt; 都是二维张量（即使它们都是有一维大小为 1，它们也是二维的）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;q2-1&#34;&gt;Q2
+&lt;/h3&gt;&lt;p&gt;利用神经网络实现一个能够近似 $\sin(x)$ 的回归模型。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在模型的 &lt;code&gt;__init__&lt;/code&gt; 中初始化要用到的每一层，然后在 &lt;code&gt;forward&lt;/code&gt; 中指定输入在各个层之间经过的顺序。
+&lt;ul&gt;
+&lt;li&gt;输入层直接把数据传给下一层。隐藏层一般是线性层加一个激励函数，这里用的激励函数是 &lt;code&gt;relu&lt;/code&gt;。输出层一般也是一个线性层，最终的结果会处理为输出。&lt;/li&gt;
+&lt;li&gt;这一题我用了一个 64 个神经元的隐藏层和一个输出层。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;这一题用的损失函数就是前面提到的 &lt;code&gt;mse_loss&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;训练模型的函数的写法与前面给的线性回归模型的训练方法类似
+&lt;ul&gt;
+&lt;li&gt;使用题目中给的优化器 &lt;code&gt;optim.Adam&lt;/code&gt; ，学习率我设置的 0.001，batch 大小设置的是 4&lt;/li&gt;
+&lt;li&gt;训练中每次迭代时计算一下所有 batch 的损失函数的平均数，如果小于 0.02 就结束训练&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote class=&#34;alert alert-note&#34;&gt;
+    &lt;div class=&#34;alert-title&#34;&gt;
+        &lt;span class=&#34;alert-icon&#34;&gt;&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; width=&#34;24&#34; height=&#34;24&#34; viewBox=&#34;0 0 24 24&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; class=&#34;lucide lucide-pencil-icon lucide-pencil&#34;&gt;&lt;path d=&#34;M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z&#34;/&gt;&lt;path d=&#34;m15 5 4 4&#34;/&gt;&lt;/svg&gt;&lt;/span&gt;
+        &lt;span class=&#34;alert-text&#34;&gt;优化器的工作流程&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;alert-content&#34;&gt;
+        &lt;p&gt;PyTorch 中优化器的基本操作步骤是&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;optimizier.zero_grad()&lt;/code&gt; 清空之前的梯度。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;loss.backward()&lt;/code&gt; 计算当前的梯度。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;optimizer.step()&lt;/code&gt; 根据算法更新模型参数&lt;/li&gt;
+&lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/blockquote&gt;&lt;h3 id=&#34;q3-1&#34;&gt;Q3
+&lt;/h3&gt;&lt;p&gt;利用神经网络实现一个数字识别模型。&lt;/p&gt;
+&lt;p&gt;代码和 q2 中的回归模型类似。下面是我尝试不同结构的神经网络的过程：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;隐藏层大小&lt;/th&gt;
+          &lt;th&gt;学习率&lt;/th&gt;
+          &lt;th&gt;batch 大小&lt;/th&gt;
+          &lt;th&gt;效果&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;6400&lt;/td&gt;
+          &lt;td&gt;0.001&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;训练地过于慢&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;400&lt;/td&gt;
+          &lt;td&gt;0.001&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;通过&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;64&lt;/td&gt;
+          &lt;td&gt;0.001&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;准确率在 96% 左右徘徊&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;400&lt;/td&gt;
+          &lt;td&gt;0.01&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;准确率达到 70% 左右开始下降&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;400 → 400&lt;/td&gt;
+          &lt;td&gt;0.001&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;通过&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;400 → 200&lt;/td&gt;
+          &lt;td&gt;0.001&lt;/td&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;如果在 97% 停止训练会不通过，&lt;br&gt;如果在 97.5% 停止训练可以，但是很慢&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;400&lt;/td&gt;
+          &lt;td&gt;0.001&lt;/td&gt;
+          &lt;td&gt;32&lt;/td&gt;
+          &lt;td&gt;通过，而且很快&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;400 → 200&lt;/td&gt;
+          &lt;td&gt;0.001&lt;/td&gt;
+          &lt;td&gt;32&lt;/td&gt;
+          &lt;td&gt;通过，而且也很快&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;400&lt;/td&gt;
+          &lt;td&gt;0.001&lt;/td&gt;
+          &lt;td&gt;64&lt;/td&gt;
+          &lt;td&gt;通过，也很快&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;400&lt;/td&gt;
+          &lt;td&gt;0.01&lt;/td&gt;
+          &lt;td&gt;64&lt;/td&gt;
+          &lt;td&gt;准确率在 92% 左右徘徊&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;q4-1&#34;&gt;Q4
+&lt;/h3&gt;&lt;p&gt;实现一个基于 RNN 的语言识别模型。&lt;/p&gt;
+&lt;p&gt;首先需要建立一个神经网络 $f_{initial}$ 和一个神经网络 $f$ ，$f_{initial}$ 和 $f$ 的输出的向量大小应该是一样的。接下来迭代处理输入单词中的每一个字符，将这个字符丢进 $f_{initial}$ 得到的输出 $f_{initial}(x_i)$ 和把上一次迭代得到的结果 $h_{i-1}$ 丢进 $f$ 得到的输出 $f(h_{i-1})$ 相加，即 $f_{initial}(x_i)+f(h_{i-1})$ ，经过一个激励函数 (&lt;code&gt;relu&lt;/code&gt;) 处理，得到 $h_i$ 作为这一次迭代的结果，继续拿去进行下一次迭代。最后将最终得到的 $h_L$ 丢给一个输出层得到识别为不同语言的分数。&lt;/p&gt;
+&lt;p&gt;我这里用的 $f_{initial}$ 和 $f$ 实际上只是一层，即 &lt;code&gt;self.fi = Linear(self.num_chars, hidden_size)&lt;/code&gt; 和 &lt;code&gt;self.f = Linear(hidden_size, hidden_size)&lt;/code&gt; ，前向传播时只需要遍历单词中的每个字符，把字符 x 经过这两层得到的结果相加再套一个 &lt;code&gt;relu&lt;/code&gt; 得到 &lt;code&gt;h&lt;/code&gt; ，遍历完之后送给输出层即可。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我使用的 &lt;code&gt;hidden_size&lt;/code&gt; 是 100，学习率是 0.005， &lt;code&gt;batch_size&lt;/code&gt; 是 50&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;q5-1&#34;&gt;Q5
+&lt;/h3&gt;&lt;p&gt;在 Q3 实现的数字识别模型中加入卷积层（CNN）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Convolve&lt;/code&gt; 使用 &lt;code&gt;tensor[y, x]&lt;/code&gt; 修改输出张量中某个点的值，使用 &lt;code&gt;tensor[y:y+height, x:x+width]&lt;/code&gt; 切分输入向量。遍历输入张量（中点乘的起点）的点，使用 &lt;code&gt;tensordot&lt;/code&gt; 来计算出点乘的和放到输出张量中。&lt;/p&gt;
+&lt;p&gt;之后模型的构建和训练与 Q3 类似，只不过 &lt;code&gt;forward&lt;/code&gt; 中输入数据会先经过一遍卷积层，之后会转回一维数组，这个题目已经实现好了，只需要写后面的线性层就行了。注意经过卷积层之后首先要进行一次 &lt;code&gt;relu&lt;/code&gt; ，并且从卷积层出来的向量大小是 &lt;code&gt;26*26&lt;/code&gt; 的而不是 &lt;code&gt;28*28&lt;/code&gt; 的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用了一个 200 个节点的隐藏层，学习率是 0.001， &lt;code&gt;batch_size&lt;/code&gt; 是 32&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;q6-1&#34;&gt;Q6
+&lt;/h3&gt;&lt;p&gt;实现一个注意力层。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;求开根号可以用 &lt;code&gt;** 0.5&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;softmax&lt;/code&gt; 的 &lt;code&gt;dim=-1&lt;/code&gt; （ &lt;em&gt;TODO&lt;/em&gt; ）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;forward&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;B&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;C&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;q&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;q_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;v&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;v_layer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;k_t&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;movedim&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;w&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;matmul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;q&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;k_t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;layer_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;**&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;w&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;masked_fill&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[:,:,:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;float&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;-inf&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;w&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;softmax&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dim&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;matmul&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;v&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>CS 61B 笔记</title>
         <link>https://freeMdoge.github.io/p/cs-61b-%E7%AC%94%E8%AE%B0/</link>
         <pubDate>Sat, 08 Nov 2025 15:19:21 +0800</pubDate>
@@ -2207,7 +3218,7 @@
 &lt;li&gt;线性时间查找两个有序列表重叠部分的方法：
 &lt;ul&gt;
 &lt;li&gt;设置两个指针 $i,j$ ，分别指向两个列表 $s, t$ 的第一个元素&lt;/li&gt;
-&lt;li&gt;如果 $s_i &amp;lt; t_j$ ，那么 $s_i$ 一定不与 $t_j$ 及其后面的元素相同（因为有序），所以可以 $i$ 加一&lt;/li&gt;
+&lt;li&gt;如果 $s_i &lt; t_j$ ，那么 $s_i$ 一定不与 $t_j$ 及其后面的元素相同（因为有序），所以可以 $i$ 加一&lt;/li&gt;
 &lt;li&gt;如果 $s_i = t_j$ ，那么找到一对相同元素， $i, j$ 都加一&lt;/li&gt;
 &lt;li&gt;$i, j$ 中任意一个走到最后，说明另一个剩下的也没得匹配了，结束&lt;/li&gt;
 &lt;/ul&gt;
@@ -2695,263 +3706,6 @@
 </description>
         </item>
         <item>
-        <title>这是一个测试页面</title>
-        <link>https://freeMdoge.github.io/p/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2/</link>
-        <pubDate>Wed, 23 Jul 2025 16:56:43 +0800</pubDate>
-        
-        <guid>https://freeMdoge.github.io/p/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2/</guid>
-        <description>&lt;img src="https://freeMdoge.github.io/p/%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E6%B5%8B%E8%AF%95%E9%A1%B5%E9%9D%A2/picture11.png" alt="Featured image of post 这是一个测试页面" /&gt;&lt;p&gt;现在我进行一次修改&lt;/p&gt;
-&lt;h2 id=&#34;还有修改&#34;&gt;还有修改？！？
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;修改时区&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;timeZone&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Asia/Shanghai&amp;#34;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;code&gt;CST&lt;/code&gt; 可以表示表示中国标准时间，也可能表示其他时区，可能产生歧义，于是我不想用这个&lt;/p&gt;
-&lt;h2 id=&#34;这是一段-c-代码&#34;&gt;这是一段 C++ 代码
-&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;代码块测试&lt;/strong&gt;：&lt;/p&gt;
-&lt;p&gt;单行未指定代码语言&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;多行未指定代码语言&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;多代码块&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;No code language specified
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;单行C++&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;v&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;多行C++&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;bits/stdc++.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;using&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;namespace&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;sc&#34;&gt;&amp;#39;\n&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;超多行代码&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scss&#34; data-lang=&#34;scss&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* Line */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.line&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;display&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;ni&#34;&gt;flex&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* Keyword */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.k&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#c678dd&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* KeywordConstant */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.kc&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e5c07b&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* KeywordDeclaration */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.kd&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#c678dd&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* KeywordNamespace */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.kn&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#c678dd&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* KeywordPseudo */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.kp&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#c678dd&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* KeywordReserved */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.kr&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#c678dd&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* KeywordType */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.kt&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e5c07b&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* Name */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.n&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameAttribute */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.na&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameClass */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.nc&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e5c07b&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameConstant */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.no&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameDecorator */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.nd&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#61afef&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameEntity */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.ni&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameException */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.ne&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameLabel */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.nl&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameNamespace */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.nn&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameOther */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.nx&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameProperty */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.py&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameTag */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.nt&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameBuiltin */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.nb&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e5c07b&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameBuiltinPseudo */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.bp&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e5c07b&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameVariable */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.nv&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameVariableClass */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.vc&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameVariableGlobal */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.vg&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameVariableInstance */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.vi&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameVariableMagic */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.vm&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#e06c75&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameFunction */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.nf&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#61afef&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;font-weight&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;ni&#34;&gt;bold&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cm&#34;&gt;/* NameFunctionMagic */&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.chroma&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;.fm&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;mh&#34;&gt;#56b6c2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;font-weight&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;ni&#34;&gt;bold&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;超长代码&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;现在需要多层目录&#34;&gt;现在需要多层目录&amp;hellip;
-&lt;/h1&gt;&lt;p&gt;真的会有吗&lt;/p&gt;
-&lt;p&gt;（测试 文章目录折叠和展开）&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;h2 id=&#34;二级&#34;&gt;二级！
-&lt;/h2&gt;&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;h3 id=&#34;三级&#34;&gt;三级！
-&lt;/h3&gt;&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;h2 id=&#34;又是二级&#34;&gt;又是二级
-&lt;/h2&gt;&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;h3 id=&#34;又是三级&#34;&gt;又是三级！
-&lt;/h3&gt;&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;p&gt;我只是占位置的&lt;/p&gt;
-&lt;h2 id=&#34;给力的图标&#34;&gt;给力的图标
-&lt;/h2&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://tabler.io/icons&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;给力的图标&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;引用&#34;&gt;引用
-&lt;/h2&gt;&lt;blockquote class=&#34;alert alert-problem&#34;&gt;
-    &lt;p&gt;hi&lt;/p&gt;&lt;/blockquote&gt;
-&lt;p&gt;hello&lt;/p&gt;
-&lt;h2 id=&#34;文本&#34;&gt;文本
-&lt;/h2&gt;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-</description>
-        </item>
-        <item>
         <title>归档</title>
         <link>https://freeMdoge.github.io/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0800</pubDate>
@@ -2968,6 +3722,7 @@
         <description>&lt;p&gt;一个大菜鸡，左拼右凑糊出的博客（&lt;/p&gt;
 &lt;p&gt;博客框架：Hugo 0.148.1&lt;/p&gt;
 &lt;p&gt;主题：hugo-theme-stack-3.30.0&lt;/p&gt;
+&lt;p&gt;部分图标来自 Lucide&lt;/p&gt;
 </description>
         </item>
         <item>
