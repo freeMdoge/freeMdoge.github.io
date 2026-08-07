@@ -1,20 +1,44 @@
 <!DOCTYPE html>
-<html lang="zh-cn" dir="ltr">
+<html lang="zh" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="CS 61B UCB CS61B SP21\nJava Java 基础 控制台输出\n1 System.out.println(); 数组\n创建 1 2 int[] arr1 = new int[10]; int[] arr2 = new int[] {1, 2, 3}; 长度 1 arr1.length 引用类型\n除了 byte, short, int, long, float, double, boolean, char 以外都是引用类型 引用类型存地址，引用类型之间的赋值只会复制地址，不会拷贝指向的实例。传参的时候传进去的也是地址 == 返回地址是否相同，.equals 由类来定义，返回逻辑上两个对象是否相同 实现 equals() 的同时需要实现 hashCode() 访问修饰符\n">
 <title>CS 61B 笔记</title>
 
-<link rel='canonical' href='https://freeMdoge.github.io/p/cs-61b-%E7%AC%94%E8%AE%B0/'>
 
-<link rel="stylesheet" href="/scss/style.min.763f7d38e9c0950badf03b4d6b845e530f6d510ba5d6f6670bc14d07fcf25428.css"><meta property='og:title' content="CS 61B 笔记">
+<link rel="canonical" href="https://freeMdoge.github.io/p/cs-61b-%E7%AC%94%E8%AE%B0/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+
+
+<link rel="stylesheet" href="/scss/style.min.e237264fa8b0d28a77926a840e7d86fc441f5fd5f699c9a391e90cdda3cb7b79.css"><meta property='og:title' content="CS 61B 笔记">
 <meta property='og:description' content="CS 61B UCB CS61B SP21\nJava Java 基础 控制台输出\n1 System.out.println(); 数组\n创建 1 2 int[] arr1 = new int[10]; int[] arr2 = new int[] {1, 2, 3}; 长度 1 arr1.length 引用类型\n除了 byte, short, int, long, float, double, boolean, char 以外都是引用类型 引用类型存地址，引用类型之间的赋值只会复制地址，不会拷贝指向的实例。传参的时候传进去的也是地址 == 返回地址是否相同，.equals 由类来定义，返回逻辑上两个对象是否相同 实现 equals() 的同时需要实现 hashCode() 访问修饰符\n">
 <meta property='og:url' content='https://freeMdoge.github.io/p/cs-61b-%E7%AC%94%E8%AE%B0/'>
 <meta property='og:site_name' content='freeMdoge'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2025-11-08T15:19:21&#43;08:00'/><meta property='article:modified_time' content='2025-11-09T13:07:18&#43;08:00'/><meta property='og:image' content='https://freeMdoge.github.io/p/cs-61b-%E7%AC%94%E8%AE%B0/cover_image.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2025-11-08T15:19:21&#43;08:00'/><meta property='article:modified_time' content='2026-08-07T13:46:36&#43;00:00'/><meta property='og:image' content='https://freeMdoge.github.io/p/cs-61b-%E7%AC%94%E8%AE%B0/cover_image.jpg' />
 <meta name="twitter:title" content="CS 61B 笔记">
 <meta name="twitter:description" content="CS 61B UCB CS61B SP21\nJava Java 基础 控制台输出\n1 System.out.println(); 数组\n创建 1 2 int[] arr1 = new int[10]; int[] arr2 = new int[] {1, 2, 3}; 长度 1 arr1.length 引用类型\n除了 byte, short, int, long, float, double, boolean, char 以外都是引用类型 引用类型存地址，引用类型之间的赋值只会复制地址，不会拷贝指向的实例。传参的时候传进去的也是地址 == 返回地址是否相同，.equals 由类来定义，返回逻辑上两个对象是否相同 实现 equals() 的同时需要实现 hashCode() 访问修饰符\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://freeMdoge.github.io/p/cs-61b-%E7%AC%94%E8%AE%B0/cover_image.jpg' />
-    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="shortcut icon" href="/img/favicon.png" />
+<style>
+     
+    @font-face {
+        font-family: 'Source Han Sans CN';
+        src: url(https://freeMdoge.github.io/font/SourceHanSansCN-Regular.otf) format('truetype');
+    }
+
+    @font-face {
+        font-family: 'JetBrains Mono';
+        src: url(https://freeMdoge.github.io/font/JetBrainsMono-Regular.ttf) format('truetype');
+    }
+
+    :root {
+        --base-font-family: 'Source Han Sans CN';
+        --code-font-family: 'JetBrains Mono';
+    }
+
+</style>
 
     </head>
     <body class="
@@ -50,25 +74,19 @@
     </button>
 
     <header>
-        
-            
-            <figure class="site-avatar">
+        <figure class="site-avatar">
                 <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/avatar_hu_5f80f535f5d9f735.png" width="300"
-                            height="300" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
+                    <img src="/img/avatar.png" 
+                        width="150"
+                        height="150"
+                        class="site-logo"
+                        loading="lazy"
+                        alt="Avatar">
                 </a>
                 
                     <span class="emoji">😋</span>
                 
             </figure>
-            
         
         
         <div class="site-meta">
@@ -80,7 +98,7 @@
                 <li>
                     <a 
                         href='https://space.bilibili.com/383110187'
-                        target="_blank"
+                        
                         title="BiliBili"
                         rel="me"
                     >
@@ -97,8 +115,6 @@
         
         <li >
             <a href='/' >
-                
-                
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -118,8 +134,6 @@
         <li >
             <a href='/%E5%85%B3%E4%BA%8E/' >
                 
-                
-                
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="12" cy="7" r="4" />
@@ -136,8 +150,6 @@
         
         <li >
             <a href='/archives/' >
-                
-                
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -157,8 +169,6 @@
         <li >
             <a href='/search/' >
                 
-                
-                
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="10" cy="10" r="7" />
@@ -175,8 +185,6 @@
         
         <li >
             <a href='/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/' >
-                
-                
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -240,7 +248,8 @@
         <h2 class="widget-title section-title">目录</h2>
         
         <div class="widget--toc">
-            <nav id="TableOfContents">
+            <nav class="toc-nav" id="TableOfContents">
+                
   <ol>
     <li><a href="#java">Java</a>
       <ol>
@@ -250,7 +259,8 @@
     </li>
     <li><a href="#data-structure">Data Structure</a></li>
   </ol>
-</nav>
+
+            </nav>
         </div>
     </section>
 
@@ -262,23 +272,20 @@
             <main class="main full-width">
     <article class="has-image main-article">
     <header class="article-header">
-        <div class="article-image">
-            <a href="/p/cs-61b-%E7%AC%94%E8%AE%B0/">
-                <img src="/p/cs-61b-%E7%AC%94%E8%AE%B0/cover_image_hu_e7a0008620569623.jpg"
-                        srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/cover_image_hu_e7a0008620569623.jpg 800w, /p/cs-61b-%E7%AC%94%E8%AE%B0/cover_image_hu_eab6ab024a5863fd.jpg 1600w"
-                        width="800" 
-                        height="342" 
-                        loading="lazy"
-                        alt="Featured image of post CS 61B 笔记" />
-                
-            </a>
-        </div>
+    <div class="article-image">
+        <a href="/p/cs-61b-%E7%AC%94%E8%AE%B0/">
+            <img alt="Featured image of post CS 61B 笔记" height="839" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/cs-61b-%E7%AC%94%E8%AE%B0/cover_image.jpg" srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/cover_image_hu_3b54a148fd37a6a5.jpg 800w, /p/cs-61b-%E7%AC%94%E8%AE%B0/cover_image_hu_678241d34664c04a.jpg 1600w, /p/cs-61b-%E7%AC%94%E8%AE%B0/cover_image.jpg 1963w" width="1963">
+        </a>
+    </div>
     
 
     <div class="article-details">
     
     <header class="article-category">
         
+            
+            
+            
             <a href="/categories/%E7%AC%94%E8%AE%B0/" style="background-color: #2a9d8f; color: #fff;">
                 笔记
             </a>
@@ -298,10 +305,14 @@
     
     
     
-    <footer class="article-time">
+    
+    
+    
+    <footer class="article-meta">
         
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <div class="inline-meta">
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
   <circle cx="18" cy="18" r="4" />
@@ -310,33 +321,62 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2025-11-08</time>
+                    <time class="article-time--published" datetime='2025-11-08T15:19:21&#43;08:00'>2025-11-08</time>
+                
+
+                <div class="article-lastmod">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415" /><path d="M16 5l3 3" /></svg>
+                    <time>
+                        2026-08-07  13:46:36 (&#43;00:00)
+                    </time>
+                </div>
+                
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
+                    <time class="article-words">
+                        1459 字
+                    </time>
+                </div>
+                
+
+                
             </div>
         
-        
-        <div class="article-lastmod">
-                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
-                <time>
-                    2025-11-09  13:07:18 (&#43;08:00)
-                </time>
-            </div>
-        
-        <div>
-            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-pencil"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /></svg>
-            <time class="article-words">
-                1459 字
-            </time>
-        </div>
+
         
 
         
     </footer>
     
-
-    
 </div>
 
 </header>
+
+    
+    <aside class="article-toc">
+        <details>
+            <summary>
+                <div class="article-toc-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                    <span>目录</span>
+                </div>
+            </summary>
+            <nav class="toc-nav">
+                
+  <ol>
+    <li><a href="#java">Java</a>
+      <ol>
+        <li><a href="#java-基础">Java 基础</a></li>
+        <li><a href="#java-继承">Java 继承</a></li>
+      </ol>
+    </li>
+    <li><a href="#data-structure">Data Structure</a></li>
+  </ol>
+
+            </nav>
+        </details>
+    </aside>
+    
 
     <section class="article-content">
     
@@ -365,7 +405,7 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">arr1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="n">10</span><span class="o">]</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">arr2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="p">{</span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">3</span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">arr2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="p">{</span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">3</span><span class="p">};</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -402,10 +442,10 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testMethod</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testMethod</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="o">&lt;</span><span class="n">expected</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="o">&lt;</span><span class="n">actual</span><span class="o">&gt;</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">assertTrue</span><span class="p">(</span><span class="s">&#34;A error message&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">condition</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -442,9 +482,9 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.List</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.ArrayList</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SimpleBuiltInListExample</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SimpleBuiltInListExample</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">L</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">5</span><span class="p">);</span><span class="w">  </span><span class="n">L</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">10</span><span class="p">);</span><span class="w">   </span><span class="n">L</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">15</span><span class="p">);</span><span class="w">
@@ -452,7 +492,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">L2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Utils</span><span class="p">.</span><span class="na">readIntsFromFile</span><span class="p">(</span><span class="err">“</span><span class="n">somedata</span><span class="p">.</span><span class="na">csv</span><span class="err">”</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Java 类型转换</p>
@@ -480,73 +520,60 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DLList</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">// 声明中写 Double，但是实例化中不用写：</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">DLList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DLList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 声明中写 Double，但是实例化中不用写：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">DLList</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DLList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>使用包装类而不是基本类型：</li>
 </ul>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th><strong>基本类型</strong></th>
-          <th><strong>包装类</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><code>int</code></td>
-          <td><code>Integer</code></td>
-      </tr>
-      <tr>
-          <td><code>char</code></td>
-          <td><code>Character</code></td>
-      </tr>
-      <tr>
-          <td><code>boolean</code></td>
-          <td><code>Boolean</code></td>
-      </tr>
-      <tr>
-          <td><code>double</code></td>
-          <td><code>Double</code></td>
-      </tr>
-      <tr>
-          <td><code>long</code></td>
-          <td><code>Long</code></td>
-      </tr>
-      <tr>
-          <td><code>short</code></td>
-          <td><code>Short</code></td>
-      </tr>
-      <tr>
-          <td><code>byte</code></td>
-          <td><code>Byte</code></td>
-      </tr>
-      <tr>
-          <td><code>float</code></td>
-          <td><code>Float</code></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><strong>基本类型</strong></th>
+					<th><strong>包装类</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>int</code></td>
+					<td><code>Integer</code></td>
+			</tr>
+			<tr>
+					<td><code>char</code></td>
+					<td><code>Character</code></td>
+			</tr>
+			<tr>
+					<td><code>boolean</code></td>
+					<td><code>Boolean</code></td>
+			</tr>
+			<tr>
+					<td><code>double</code></td>
+					<td><code>Double</code></td>
+			</tr>
+			<tr>
+					<td><code>long</code></td>
+					<td><code>Long</code></td>
+			</tr>
+			<tr>
+					<td><code>short</code></td>
+					<td><code>Short</code></td>
+			</tr>
+			<tr>
+					<td><code>byte</code></td>
+					<td><code>Byte</code></td>
+			</tr>
+			<tr>
+					<td><code>float</code></td>
+					<td><code>Float</code></td>
+			</tr>
+	</tbody>
 </table></div>
 <p>Java 高阶函数</p>
 <ul>
 <li>Java 7 或更早：用接口实现（仍在广泛使用）</li>
 </ul>
-<p><img src="/p/cs-61b-%E7%AC%94%E8%AE%B0/JavaHoFs.png"
-	width="1866"
-	height="1049"
-	srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/JavaHoFs_hu_67d5d2b235a01970.png 480w, /p/cs-61b-%E7%AC%94%E8%AE%B0/JavaHoFs_hu_ad90b6010c25b50e.png 1024w"
-	loading="lazy"
-	
-		alt="JavaHoFs"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="177"
-		data-flex-basis="426px"
-	
-></p>
+<p><img alt="JavaHoFs" class="gallery-image" data-flex-basis="426px" data-flex-grow="177" height="1049" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/cs-61b-%E7%AC%94%E8%AE%B0/JavaHoFs.png" srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/JavaHoFs_hu_797d68a8187ac9e0.png 800w, /p/cs-61b-%E7%AC%94%E8%AE%B0/JavaHoFs_hu_70d210db39d3845.png 1600w, /p/cs-61b-%E7%AC%94%E8%AE%B0/JavaHoFs.png 1866w" width="1866"></p>
 <ul>
 <li>Java 8 之后：</li>
 </ul>
@@ -577,7 +604,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">doTwice</span><span class="p">(</span><span class="n">Java8HoFDemo</span><span class="p">::</span><span class="n">tenX</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">result</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="java-继承">Java 继承
@@ -604,7 +631,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">myMethod</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">...</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -625,7 +652,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">default</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">defaultMethod</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">...</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -638,33 +665,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection1.png"
-	width="1875"
-	height="1045"
-	srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection1_hu_e96439105291b67b.png 480w, /p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection1_hu_fd4ad89d201447cd.png 1024w"
-	loading="lazy"
-	
-		alt="image-20251107192927787"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="179"
-		data-flex-basis="430px"
-	
-><img src="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection2.png"
-	width="1200"
-	height="1111"
-	srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection2_hu_94115591dcca43b2.png 480w, /p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection2_hu_2cad5c0cf01cae27.png 1024w"
-	loading="lazy"
-	
-		alt="image-20251107214702872"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="108"
-		data-flex-basis="259px"
-	
-></p>
+<p><img alt="image-20251107192927787" class="gallery-image" data-flex-basis="430px" data-flex-grow="179" height="1045" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection1.png" srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection1_hu_7e4b7aab6be594da.png 800w, /p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection1_hu_41f959e47d1aab6.png 1600w, /p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection1.png 1875w" width="1875"><img alt="image-20251107214702872" class="gallery-image" data-flex-basis="259px" data-flex-grow="108" height="1111" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection2.png" srcset="/p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection2_hu_c2e0f97c22da8a3.png 800w, /p/cs-61b-%E7%AC%94%E8%AE%B0/DynamicMethodSelection2.png 1200w" width="1200"></p>
 <ul>
 <li>用 <code>extends</code> 来继承一个类</li>
 </ul>
@@ -683,7 +684,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Blorp</span><span class="w"> </span><span class="n">oldBack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">removeLast</span><span class="p">();</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">addFirst</span><span class="p">(</span><span class="n">oldBack</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -721,38 +722,38 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">deletedItems</span><span class="p">.</span><span class="na">addLast</span><span class="p">(</span><span class="n">oldBack</span><span class="p">);</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">oldBack</span><span class="p">;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="data-structure">Data Structure
 </h2><p>线性数据结构</p>
 <div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>名称</th>
-          <th>数据结构</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>AList</td>
-          <td>可变长数组</td>
-      </tr>
-      <tr>
-          <td>SLList</td>
-          <td>单向链表</td>
-      </tr>
-      <tr>
-          <td></td>
-          <td></td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>名称</th>
+					<th>数据结构</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>AList</td>
+					<td>可变长数组</td>
+			</tr>
+			<tr>
+					<td>SLList</td>
+					<td>单向链表</td>
+			</tr>
+			<tr>
+					<td></td>
+					<td></td>
+			</tr>
+	</tbody>
 </table></div>
 
 </section>
 
 
-    <footer class="article-footer">
+    <footer class="article-meta article-footer">
     
     <section class="article-tags">
         
@@ -761,7 +762,7 @@
     </section>
 
 
-    <section class="article-lastmod">
+    <section class="article-lastmod inline-meta">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="12" cy="12" r="9" />
@@ -771,7 +772,7 @@
 
 
         <span>
-            最后更新于 2025-11-09  13:07:18 (&#43;08:00)
+            最后更新于 2026-08-07  13:46:36 (&#43;00:00)
         </span>
     </section></footer>
 
@@ -790,18 +791,24 @@
                 >
             </script><script>
     window.addEventListener("DOMContentLoaded", () => {
-	const mainArticleElement = document.querySelector(".main-article");
-        renderMathInElement(mainArticleElement, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
+        const elementsToRender = [".main-article", ".widget--toc"];
 
+        elementsToRender.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+                renderMathInElement(element, {
+                    delimiters: [
+                        { left: "$$", right: "$$", display: true },
+                        { left: "$", right: "$", display: false },
+                        { left: "\\(", right: "\\)", display: false },
+                        { left: "\\[", right: "\\]", display: true }
+                    ],
+                    ignoredClasses: ["gist"]
+                });
+            }
+        });
+    });
+</script>
     
 </article>
 
@@ -809,15 +816,14 @@
 
     
 
-<aside class="related-content--wrapper">
+<aside>
     <h2 class="section-title">相关文章</h2>
-    <div class="related-content">
-        <div class="flex article-list--tile">
+    <div class="subsection-list">
+        <div class="article-list--tile">
             
                 
 <article class="">
     <a href="/p/cs188-%E7%AC%94%E8%AE%B0/">
-        
         
 
         <div class="article-details">
@@ -825,31 +831,22 @@
         </div>
     </a>
 </article>
-
             
                 
 <article class="has-image">
     <a href="/p/cs-61a-%E7%AC%94%E8%AE%B0/">
         
-        
-            <div class="article-image">
-                <img src="/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian2.8140778a4ad169ab7aa7e87277f475bb_hu_32f95a5baabc7ff3.png" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post CS 61A 笔记"
-                        
-                        data-hash="md5-gUB3ikrRaat6p&#43;hyd/R1uw==">
-                
-            </div>
+        <div class="article-image">
+            <img alt="Featured image of post CS 61A 笔记" height="150" loading="lazy" src="/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian2_hu_a95ea75d02b25638.png" srcset="/p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian2_hu_a95ea75d02b25638.png 1x, /p/cs-61a-%E7%AC%94%E8%AE%B0/fengmian2_hu_d09ea3efe3d1ec54.png 2x" width="250">
+
+        </div>
         
 
-        <div class="article-details">
+        <div class="article-details"style="background: linear-gradient(0deg, #007db380 0%, #9daaabC0 100%);">
             <h2 class="article-title">CS 61A 笔记</h2>
         </div>
     </a>
 </article>
-
             
         </div>
     </div>
@@ -858,55 +855,48 @@
      
     
         
-    <script
-    src="https://giscus.app/client.js"
-    data-repo="freeMdoge/freeMdoge.github.io"
-    data-repo-id="R_kgDOPRMDiw"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOPRMDi84CtUVD"
-    data-mapping="pathname"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="top"
-    data-theme="light"
-    data-lang="en"
-    data-loading=""
-    crossorigin="anonymous"
-    async
-></script>
+
+        <div class="disqus-container">
+    <div id="disqus_thread"></div>
 <script>
-    function setGiscusTheme(theme) {
-        let giscus = document.querySelector("iframe.giscus-frame");
-        if (giscus) {
-            giscus.contentWindow.postMessage(
-                {
-                    giscus: {
-                        setConfig: {
-                            theme: theme,
-                        },
-                    },
-                },
-                "https://giscus.app"
-            );
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
         }
-    }
-
-    (function () {
-        addEventListener("message", (e) => {
-            if (event.origin !== "https://giscus.app") return;
-            handler();
-        });
-        window.addEventListener("onColorSchemeChange", handler);
-
-        function handler() {
-            if (document.documentElement.dataset.scheme === "light") {
-                setGiscusTheme('light');
-            } else {
-                setGiscusTheme('dark');
-            }
-        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
     })();
+</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
 </script>
 
     
@@ -915,127 +905,66 @@
     <section class="copyright">
         &copy; 
         
+            2025 - 
+        
         2026 freeMdoge
     </section>
     
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.30.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.3">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
 </footer>
 
 
     
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+
+
+<script type="module">
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script>
 
     
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
 
             </main>
         </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
-                
-                >
-            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
-<script>
-    (function () {
-        const customFont = document.createElement('link');
-        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+        
+<script type="text/javascript" src="/ts/main.f856840516f7c2ad1769a8f5937e3d08d6cb386e2cd2dd025ae696e0ff207958.js" defer></script>
 
-        customFont.type = "text/css";
-        customFont.rel = "stylesheet";
 
-        document.head.appendChild(customFont);
-    }());
-</script>
+
 
 <div id="particles-js"></div>
-
+<script src=https://freeMdoge.github.io/background/particles.min.js></script>
+<script>
+  particlesJS.load('particles-js', "https://freeMdoge.github.io/background/particlesjs-config.json", function() {
+    console.log('particles.js loaded - callback');
+  });
+</script>
 <style>
-     
-    #TableOfContents > ul, ol {
-        ul, ol {
-            display: none;
-        }
-        .open {
-            display: block;
-        }
-    }
-    
-     
     #particles-js {
         position: fixed;
         top: 0;
@@ -1044,31 +973,12 @@
         height: 100%;
         z-index: -1;
     }
-
-     
-    @font-face {
-        font-family: 'Source Han Sans CN';
-        src: url(https://freeMdoge.github.io/font/SourceHanSansCN-Regular.otf) format('truetype');
-    }
-
-    @font-face {
-        font-family: 'JetBrains Mono';
-        src: url(https://freeMdoge.github.io/font/JetBrainsMono-Regular.ttf) format('truetype');
-    }
-
-    :root {
-        --base-font-family: 'Source Han Sans CN';
-        --code-font-family: 'JetBrains Mono';
-    }
-
 </style>
 
 
-<script src=https://freeMdoge.github.io/background/particles.min.js></script>
+
 
 <script>
-    
-
     function initTocHide() {
         
         let toc = document.querySelector(".widget--toc");
@@ -1102,12 +1012,18 @@
         });
     }
     initTocHide()
-    
-    
-
-    particlesJS.load('particles-js', "https://freeMdoge.github.io/background/particlesjs-config.json", function() {
-        console.log('particles.js loaded - callback');
-    });
 </script>
+<style>
+     
+    #TableOfContents > ul, ol {
+        ul, ol {
+            display: none;
+        }
+        .open {
+            display: block;
+        }
+    }
+</style>
+
     </body>
 </html>
