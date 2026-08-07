@@ -12,11 +12,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
 
 
-<link rel="stylesheet" href="/scss/style.min.e237264fa8b0d28a77926a840e7d86fc441f5fd5f699c9a391e90cdda3cb7b79.css"><meta property='og:title' content="Hugo">
+<link rel="stylesheet" href="/scss/style.min.30b9ba225d04ecc3a91dd659129da7efa9a75b165bfbd705c10c9f620eee692d.css"><meta property='og:title' content="Hugo">
 <meta property='og:description' content="你好 awa">
 <meta property='og:url' content='https://freeMdoge.github.io/tags/hugo/'>
 <meta property='og:site_name' content='freeMdoge'>
-<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-08-07T13:46:37&#43;00:00 '/>
+<meta property='og:type' content='website'><meta property='og:updated_time' content=' 2026-08-07T15:11:33&#43;00:00 '/>
 <meta name="twitter:title" content="Hugo">
 <meta name="twitter:description" content="你好 awa"><link rel="alternate" type="application/rss&#43;xml" href="https://freeMdoge.github.io/tags/hugo/index.xml">
     <link rel="shortcut icon" href="/img/favicon.png" />
@@ -500,6 +500,59 @@
         }
     }
 </style>
+
+
+
+<script>
+     
+    window.backTopIcon ="\u003csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-square-rounded-arrow-up\"\u003e\u003cpath stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\" /\u003e\u003cpath d=\"M16 12l-4 -4l-4 4\" /\u003e\u003cpath d=\"M12 16v-8\" /\u003e\u003cpath d=\"M12 3c7.2 0 9 1.8 9 9c0 7.2 -1.8 9 -9 9c-7.2 0 -9 -1.8 -9 -9c0 -7.2 1.8 -9 9 -9\" /\u003e\u003c/svg\u003e";
+     
+    function initScrollTop() {
+        let rightSideBar = document.querySelector(".right-sidebar");
+        if (!rightSideBar) {
+            return;
+        }
+        
+        let btn = document.createElement("div");
+        btn.innerHTML = window.backTopIcon;
+        btn.id = "backTopBtn";
+        btn.onclick = backToTop
+        rightSideBar.appendChild(btn)
+        
+        window.onscroll = function() {
+            
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+    }
+
+     
+    function backToTop(){
+        window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+
+    initScrollTop();
+</script>
+<style>
+    #backTopBtn {
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        z-index: 99;
+        cursor: pointer;
+    }
+
+    #backTopBtn svg {
+        width: 26px;
+        height: 26px;
+        color: var(--body-text-color);
+    }
+</style>
+
+
 
     </body>
 </html>
