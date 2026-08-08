@@ -12,11 +12,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
 
 
-<link rel="stylesheet" href="/scss/style.min.30b9ba225d04ecc3a91dd659129da7efa9a75b165bfbd705c10c9f620eee692d.css"><meta property='og:title' content="关于">
+<link rel="stylesheet" href="/scss/style.min.6e2c5f09d40fac37a3a31bc01c2f7de9201691635f833f03e1f2465f404f87df.css"><meta property='og:title' content="关于">
 <meta property='og:description' content="一个大菜鸡，左拼右凑糊出的博客（\n博客框架：Hugo 0.164.0\n主题：hugo-theme-stack-4.0.3\n">
 <meta property='og:url' content='https://freeMdoge.github.io/%E5%85%B3%E4%BA%8E/'>
 <meta property='og:site_name' content='freeMdoge'>
-<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:modified_time' content='2026-08-07T15:11:33&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:modified_time' content='2026-08-08T08:02:13&#43;00:00'/>
 <meta name="twitter:title" content="关于">
 <meta name="twitter:description" content="一个大菜鸡，左拼右凑糊出的博客（\n博客框架：Hugo 0.164.0\n主题：hugo-theme-stack-4.0.3\n">
     <link rel="shortcut icon" href="/img/favicon.png" />
@@ -280,7 +280,7 @@
 
 
         <span>
-            最后更新于 2026-08-07  15:11:33 (&#43;00:00)
+            最后更新于 2026-08-08  08:02:13 (&#43;00:00)
         </span>
     </section></footer>
 
@@ -361,6 +361,12 @@
     <section class="powerby">
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.3">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+
+    
+    <section class="running-time">
+        本博客已运行
+        <span id="runningdays" class="running-days"></span>
     </section>
 </footer>
 
@@ -520,9 +526,64 @@
     #backTopBtn svg {
         width: 26px;
         height: 26px;
-        color: var(--body-text-color);
+        color: var(--card-text-color-tertiary);
+        transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    #backTopBtn:hover svg {
+        transform: rotate(360deg);
+        color: var(--card-text-color-main);
     }
 </style>
+
+
+
+
+<script src="https://npm.elemecdn.com/nprogress@0.2.0/nprogress.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://npm.elemecdn.com/nprogress@0.2.0/nprogress.css" crossorigin="anonymous" />
+<script>
+    NProgress.start();
+    document.addEventListener("readystatechange", () => {
+        if (document.readyState === "interactive") NProgress.inc(0.8);
+        if (document.readyState === "complete") NProgress.done();
+    });
+</script>
+
+
+
+
+<script>
+ let s1 = '2025-7-23'; 
+ s1 = new Date(s1.replace(/-/g, "/"));
+ let s2 = new Date();
+
+ 
+ let diffInMilliseconds = s2.getTime() - s1.getTime();
+ let totalDays = Math.floor(diffInMilliseconds / (1000 * 60 * 60 * 24));
+
+ 
+ let years = s2.getFullYear() - s1.getFullYear();
+ let months = s2.getMonth() - s1.getMonth();
+ let days = s2.getDate() - s1.getDate();
+
+ 
+ if (days < 0) {
+   months -= 1;
+   let prevMonth = new Date(s2.getFullYear(), s2.getMonth(), 0); 
+   days += prevMonth.getDate();
+ }
+ if (months < 0) {
+   years -= 1;
+   months += 12;
+ }
+
+ 
+ let result = `${years}年${months}月${days}天`;
+ document.getElementById('runningdays').innerHTML = result;
+</script>
+
+
+
 
 
 
